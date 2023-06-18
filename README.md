@@ -1,2 +1,2 @@
 # CinemaWorld_Asp_project
-test readme
+This is an ASP.net project website
