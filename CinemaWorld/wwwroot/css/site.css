@@ -1,0 +1,61 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background-color:lightgrey;
+}
+
+.nav-item-login {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid purple;
+    background-color: white;
+    color: purple;
+    padding: 1px 4px;
+}
+
+.nav-item-login {
+    background-color: #AA81EE;
+}
+
+.nav-item-login:hover {
+     color: white;
+     transform: scale(1.1);
+}
+
+.nav-item-register {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid purple;
+    background-color: white;
+    color: black;
+    padding: 1px 1px;
+    margin-right: 5px;
+}
+
+.nav-item-register {
+    background-color: white;
+}
+
+.nav-item-register:hover {
+    color: white;
+    transform: scale(1.1);
+}
+

@@ -1,0 +1,98 @@
+body {
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #f2f3f4;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.general-div{
+    text-align: center;
+    color: black;
+    font-size: 30px;
+    line-height: 30px;
+}
+
+#movies {
+    color: black;
+    width: 100%;
+}
+.sub-div {
+    margin-bottom: 12px;
+    width: 30%;
+    float: left;
+    margin-left: 12px;
+    display: inline-block;
+}
+
+article {
+    background-color: lightgrey;
+    overflow: hidden;
+    /*border-radius: 12px;*/
+}
+
+.movie__img {
+    width: 100%;
+    /*border-radius: 15px;*/
+    margin-bottom: 8px;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.movie__title {
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.movie__desc {
+    margin-bottom: 0;
+    padding-left: 10px;
+    font-size: 14px;
+    color: #2d3748;
+    --max-lines: 3;
+    --line-height: 1.4;
+    max-height: calc(var(--max-lines)* 1em * var(--line-height));
+    line-height: var(--line-height);
+    overflow: hidden;
+    position: relative;
+}
+
+.movie__desc::before{
+    content: "";
+    position: absolute;
+    height: calc(2em * var(line-height));
+    width: 100%;
+    bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, white);
+}
+
+article #details{
+    display: inline-block;
+    width: 40%;
+    margin: 6px 15%;
+    border: none;
+    border-radius: 12px;
+    cursor:pointer;
+    border: 2px solid purple;
+    background-color: white;
+    color: purple;
+    padding: 2px 5px;
+    font-size: 15px;
+}
+
+article:hover #details{
+    background-color: #AA81EE;
+}
+
+article #details:hover{
+    background-color: purple;
+    color: white;
+}
+
+
+
+
+
+
+

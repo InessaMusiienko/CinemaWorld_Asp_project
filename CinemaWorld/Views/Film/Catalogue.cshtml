@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<AllFilmViewModel>
+@{
+    ViewBag.Title = "All Films";
+}
+<link href="~/css/catalogue.css" rel="stylesheet" type="text/css">
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="general-div">
+    <section id="moviesSection">
+        @foreach (var film in Model)
+        {
+            <div class="sub-div" style="width: 18rem; ">
+                <article>
+                    <img class="movie__img2"
+                         src= @film.ImageUrl>
+                    <div class="card-body">
+                        <button class="movie__tag--thriller">@film.Genre</button>
+                        <h5 class="card-title mt-1">@film.Name</h5>
+                        <p class="mb-0">@film.Description</p>
+                    </div>
+                </article>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                        <form class="input-group-sm" asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id">
+                            <input type="submit" value="Add to Favourites" class="addToFavor" />
+                        </form>
+                }
+            </div>
+        }
+    </section>
+</div>

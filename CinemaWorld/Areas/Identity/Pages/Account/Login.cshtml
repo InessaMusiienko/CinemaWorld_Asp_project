@@ -1,0 +1,36 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "We're glad to see you again";
+}
+<link href="~/css/login.css" rel="stylesheet" type="text/css">
+
+<div class="row d-flex align-items-center justify-content-center">
+    <h2 class="text-center">@ViewData["Title"]</h2>
+    <div class="col-md-4">
+    <section>
+        <form id="account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-field">
+                <label asp-for="Input.Username" class="form-label"></label>
+                <input asp-for="Input.Username" class="form-control" autocomplete="username" aria-required="true" />                
+                <span asp-validation-for="Input.Username" class="text-danger"></span>
+            </div>
+            <div class="form-field">
+                <label asp-for="Input.Password" class="form-label"></label>
+                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />                
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <hr />
+            <div>
+                <button id="submit" type="submit" class="w-100 btn btn-lg btn-primary">Show time!</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
