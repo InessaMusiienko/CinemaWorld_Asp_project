@@ -65,9 +65,9 @@ p {
     color: #2d3748;
 }
 
-#addToFavor {
+.addToFavor {
     display: inline-block;
-    width: 100%;
+    width: 50%;
     margin: 1px 0;
     border: none;
     border-radius: 12px;
@@ -75,6 +75,12 @@ p {
     background-color: yellow;
     border: 2px solid #F1C40F;
     margin-top: 0;
+    cursor: pointer;
+    margin-left: 20%;
+}
+
+.addToFavor:active {
+        background-color: white;
 }
 
 h3 {
