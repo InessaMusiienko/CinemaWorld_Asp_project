@@ -4,6 +4,7 @@
     ViewBag.Title = "All Films";
 }
 <link href="~/css/catalogue.css" rel="stylesheet" type="text/css">
+
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
@@ -11,22 +12,68 @@
     <section id="moviesSection">
         @foreach (var film in Model)
         {
-            <div class="sub-div" style="width: 18rem; ">
+            <div class="sub-div">
                 <article>
                     <img class="movie__img2"
                          src= @film.ImageUrl>
                     <div class="card-body">
-                        <button class="movie__tag--thriller">@film.Genre</button>
-                        <h5 class="card-title mt-1">@film.Name</h5>
-                        <p class="mb-0">@film.Description</p>
+                        @if(film.Genre == "Thriller")
+                        {
+                            <button class="movie__tag--thriller">@film.Genre</button>
+                        }
+                        @if(film.Genre == "Fantasy")
+                        {
+                            <button class="movie__tag--fantasy">@film.Genre</button>
+                        }
+                        @if(film.Genre == "Animation")
+                        {
+                            <button class="movie__tag--animation">@film.Genre</button>
+                        }
+                        @if(film.Genre == "Comedy")
+                        {
+                            <button class="movie__tag--comedy">@film.Genre</button>
+                        }   
+                        @if(film.Genre == "Action")
+                        {
+                            <button class="movie__tag--action">@film.Genre</button>
+                        } 
+                        <h5>@film.Name</h5>
+                        <p>@film.Description</p>
                     </div>
                 </article>
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                        <form class="input-group-sm" asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id">
-                            <input type="submit" value="Add to Favourites" class="addToFavor" />
-                        </form>
+                    @if(film.Genre == "Thriller")
+                        {
+                            <form class="input-group-sm" asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id">
+                                <input type="submit" value="Add to Favourite" class="addToFavor--thriller" />
+                            </form>
+                        }
+                        @if(film.Genre == "Fantasy")
+                        {
+                            <form class="input-group-sm" asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id">
+                                <input type="submit" value="Add to Favourite" class="addToFavor--fantasy" />
+                            </form>
+                        }
+                        @if(film.Genre == "Animation")
+                        {
+                            <form class="input-group-sm" asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id">
+                                <input type="submit" value="Add to Favourite" class="addToFavor--animation" />
+                            </form>
+                        }
+                        @if(film.Genre == "Comedy")
+                        {
+                            <form class="input-group-sm" asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id">
+                                <input type="submit" value="Add to Favourite" class="addToFavor--comedy" />
+                            </form>
+                        }   
+                        @if(film.Genre == "Action")
+                        {
+                            <form class="input-group-sm" asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id">
+                                <input type="submit" value="Add to Favourite" class="addToFavor--action" />
+                            </form>
+                        }                         
                 }
             </div>
         }

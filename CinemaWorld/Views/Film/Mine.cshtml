@@ -2,29 +2,106 @@
 @{
     ViewBag.Title = "Favourites";
 }
+<link href="~/css/catalogue.css" rel="stylesheet" type="text/css">
 
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
+<div class="general-div">
+    <section id="moviesSection">
+        @foreach (var film in Model)
+        {
+            <div class="sub-div">
+                <article>
+                    <img class="movie__img2"
+                         src= @film.ImageUrl>
+                    <div class="card-body">
+                        @if(film.Genre == "Thriller")
+                        {
+                            <button class="movie__tag--thriller">@film.Genre</button>
+                        }
+                        @if(film.Genre == "Fantasy")
+                        {
+                            <button class="movie__tag--fantasy">@film.Genre</button>
+                        }
+                        @if(film.Genre == "Animation")
+                        {
+                            <button class="movie__tag--animation">@film.Genre</button>
+                        }
+                        @if(film.Genre == "Comedy")
+                        {
+                            <button class="movie__tag--comedy">@film.Genre</button>
+                        }   
+                        @if(film.Genre == "Action")
+                        {
+                            <button class="movie__tag--action">@film.Genre</button>
+                        } 
+                        <h5>@film.Name</h5>
+                        <p>@film.Description</p>
+                    </div>
+                </article>
 
-<div class="text-center row">
-    @foreach (var film in Model)
-    {
-        <div class="card col-4" style="width: 20rem; ">
-            <img class="card-img-top" style="width: 18rem;"
-                 src="@film.ImageUrl" alt="Film Image">
-            <div class="card-body">
-
-                <h5 class="card-title mt-1">@film.Name</h5>
-                <p class="mb-0">Author: @film.Country, @film.Year</p>
-                <p class="mb-0">Description: @film.</p>
-                <p>Category: @film.Genre</p>
+                @if (User.Identity.IsAuthenticated)
+                {
+                        @if(film.Genre == "Thriller")
+                        {
+                            <form class="input-group-sm" asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id">
+                                <input type="submit" value="Remove from Favourite" class="addToFavor--thriller" />
+                            </form>
+                        }
+                        @if(film.Genre == "Fantasy")
+                        {
+                           <form class="input-group-sm" asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id">
+                                <input type="submit" value="Remove from Favourite" class="addToFavor--fantasy" />
+                            </form>
+                        }
+                        @if(film.Genre == "Animation")
+                        {                            
+                            <form class="input-group-sm" asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id">
+                                <input type="submit" value="Remove from Favourite" class="addToFavor--animation" />
+                            </form>
+                        }
+                        @if(film.Genre == "Comedy")
+                        {
+                            <form class="input-group-sm" asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id">
+                                <input type="submit" value="Remove from Favourite" class="addToFavor--comedy" />
+                            </form>
+                        }   
+                        @if(film.Genre == "Action")
+                        {
+                            <form class="input-group-sm" asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id">
+                                <input type="submit" value="Remove from Favourite" class="addToFavor--action" />
+                            </form>
+                        }   
+                    
+                }
             </div>
-
-            <form class="input-group-sm" asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id">
-                <input type="submit" value="Remove from Favourites" class="fs-6 btn btn-success mb-3 p-2" />
-            </form>
-        </div>
-    }
+        }
+    </section>
 </div>
+@*<div class="general-div">
+    <section id="moviesSection">
+        @foreach (var film in Model)
+        {
+            <div class="sub-div">
+                <article>
+                    <img class="movie__img2"
+                        src="@film.ImageUrl" alt="Film Image">
+                    <div class="card-body">
+
+                        <h5 class="card-title mt-1">@film.Name</h5>
+                        <p class="mb-0">Author: @film.Country, @film.Year</p>
+                        <p class="mb-0">Description: @film.</p>
+                        <p>Category: @film.Genre</p>
+                    </div>
+                </article>
+
+                <form class="input-group-sm" asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id">
+                    <input type="submit" value="Remove from Favourites" class="fs-6 btn btn-success mb-3 p-2" />
+                </form>
+            </div>
+        }
+    }
+    </section>
+</div>*@
 

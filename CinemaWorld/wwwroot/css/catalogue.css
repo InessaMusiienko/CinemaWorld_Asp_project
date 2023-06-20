@@ -6,89 +6,176 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#moviesSection {
-    margin: 0 auto;
+.general-div {
+    text-align: center;
+    color: black;
+    font-size: 30px;
+    line-height: 30px;
 }
 
-.general-div {
-    display: inline-block;
-    padding: 10px;
-    border-radius: 12px;
-    vertical-align: top;
-    height: 320px;
+#moviesSection {
+    color: black;
+    width: 100%;
 }
 
 .sub-div {
-    border: none;
-    background-color: #f2f3f4;
+    margin-bottom: 12px;
+    width: 23%;
+    float: left;
+    margin-left: 12px;
+    display: inline-block;
 }
 
 article {
-    width: 280px;
-    border-radius: 2px;
-    border-color: black;
+    overflow: hidden;
+    /*border-radius: 12px;*/
 }
 
-article .movie__img2 {
+.movie__img2 {
     width: 100%;
-    border-radius: 21px;
+    border-radius: 15px;
     margin-bottom: 8px;
     padding-right: 0;
     padding-left: 0;
 }
 
-article .movie__img2:hover {
-            transform: scale(1.1);
-        }
-
-.movie__tag--thriller {
-    display: inline-block;
-    width: 33%;
-    margin: 1px 0;
-    border: none;
-    border-radius: 12px;
-    padding: 5px 10px;
-    background-color: yellow;
-    border: 2px solid #F1C40F;
-    margin-top: 0;
-}
-
-h5 {
-    display: inline;
-    text-align: left;
-    font-size: 15px;
-    text-transform: capitalize;
-}
-
-p {
-    font-size: 14px;
-    color: #2d3748;
-}
-
-.addToFavor {
-    display: inline-block;
+.movie__tag--thriller,
+.movie__tag--fantasy,
+.movie__tag--animation,
+.movie__tag--comedy,
+.movie__tag--action {
+    display: block;
     width: 50%;
-    margin: 1px 0;
+    margin: 0;
     border: none;
     border-radius: 12px;
-    padding: 5px 10px;
+    padding: 2px 5px;
     background-color: yellow;
     border: 2px solid #F1C40F;
     margin-top: 0;
     cursor: pointer;
-    margin-left: 20%;
+    font-size: 13px;
+    justify-items: left;
+    justify-self: left;
 }
 
-.addToFavor:active {
-        background-color: white;
+.movie__tag--fantasy {
+    background-color: yellow;
+    border: 2px solid #F1C40F;
+    margin-top: 0;
 }
 
-h3 {
-    font-weight: bold;
+.movie__tag--thriller {
+    background-color: #85C1E9;
+    border: 2px solid #5DADE2;
 }
 
+.movie__tag--animation {
+    background-color: #58D68D;
+    border: 2px solid #28B463;
+}
 
+.movie__tag--comedy {
+    background-color: #FFBE32;
+    border: 2px solid #F3AB18;
+}
 
+.movie__tag--action {
+    background-color: #BC827C;
+    border: 2px solid #B7707A;
+}
 
+h5 {
+    display: inline;
+    text-transform: capitalize;
+    font-size: 15px;
+    text-align: left;
+    font-weight:bold;
+}
+p {
+    margin-bottom: 0;
+    padding-left: 10px;
+    font-size: 14px;
+    color: #2d3748;
+    --max-lines: 3;
+    --line-height: 1.4;
+    max-height: calc(var(--max-lines)* 1em * var(--line-height));
+    line-height: var(--line-height);
+    overflow: hidden;
+    position: relative;
+}
 
+p::before {
+        content: "";
+        position: absolute;
+        height: calc(2em * var(line-height));
+        width: 100%;
+        bottom: 0;
+        pointer-events: none;
+        background: linear-gradient(to bottom, transparent, white);
+}
 
+.addToFavor--thriller,
+.addToFavor--fantasy,
+.addToFavor--animation,
+.addToFavor--comedy,
+.addToFavor--action {
+    display: inline-block;
+    width: 70%;
+    margin: 6px 15%;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 2px solid yellow;
+    background-color: white;
+    color: black;
+    padding: 2px 5px;
+    font-size: 15px;
+}
+
+.addToFavor--thriller {
+    background-color: white;
+    border: 2px solid #5DADE2;
+}
+
+.addToFavor--thriller:active {
+        background-color: #85C1E9;
+}
+
+.addToFavor--fantasy {
+    background-color: white;
+    border: 2px solid #F1C40F;
+}
+
+.addToFavor--fantasy:active {
+    background-color:yellow;
+}
+
+.addToFavor--animation {
+    background-color: white;
+    border: 2px solid #28B463;
+}
+
+.addToFavor--animation:active {
+    background-color: #58D68D;
+}
+
+.addToFavor--comedy {
+    background-color: white;
+    border: 2px solid #F3AB18;
+}
+
+.addToFavor--comedy:active {
+    background-color: #FFBE32;
+}
+
+.addToFavor--action {
+    background-color: white;
+    border: 2px solid #B7707A;
+}
+
+    .addToFavor--action:active {
+        background-color: #BC827C;
+    }
+
+   

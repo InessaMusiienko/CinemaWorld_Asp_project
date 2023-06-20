@@ -55,8 +55,6 @@ namespace CinemaWorld.Services
                 Id = f.Film.Id,
                 Name = f.Film.Name,
                 ImageUrl = f.Film.ImageUrl,
-                Country = f.Film.Country,
-                Year = f.Film.Year,
                 Description = f.Film.Description,
                 Genre = f.Film.Genre.Name
             }).ToListAsync();
