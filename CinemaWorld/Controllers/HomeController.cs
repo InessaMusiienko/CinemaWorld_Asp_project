@@ -23,5 +23,10 @@ namespace CinemaWorld.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> GetDetails(int id)
+        {
+            var film = await filmService.GetFilmByIdAsync(id);
+            return View(film);            
+        }
     }
 }

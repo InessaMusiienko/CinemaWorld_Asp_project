@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model FilmViewModel
+
+<div class="text-center">
+    <h3>What's new on Cinema World</h3>
+</div>
+
+<div class="general-div">
+    <section id="movies">
+        <div class="sub-div">
+                <article class="movie">
+                    <img class="movie__img" src=@Model.ImageUrl>
+                    <div class="card-body">
+                        <h5 class="movie__title">@Model.Name</h5>   
+                        <p>@Model.Rating</p>
+                        <p>@Model.Year, @Model.Country</p>
+                        <p class="movie__desc">@Model.Description</p>
+                        <p>Director: @Model.Director</p>
+                    </div>
+
+                    @*<form class="input-group-sm" asp-controller="Home" asp-action="GetDetails" asp-route-id="@film.Id">
+                        <input type="submit" value="Details" id="details" />
+                    </form>*@
+
+                </article>
+            </div>
+    </section>
+</div>
+

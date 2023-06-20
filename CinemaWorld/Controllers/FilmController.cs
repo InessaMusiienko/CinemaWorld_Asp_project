@@ -56,6 +56,6 @@ namespace CinemaWorld.Controllers
 
             await filmService.RemoveFilmFromFavouritesAsync(userId, film);
             return RedirectToAction(nameof(Mine));
-        }
+        }       
     }
 }
