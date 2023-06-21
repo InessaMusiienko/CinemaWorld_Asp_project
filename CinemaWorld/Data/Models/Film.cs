@@ -41,5 +41,7 @@ namespace CinemaWorld.Data.Models
         public Genre Genre { get; set; } = null!;
 
         public List<IdentityUserFilm> UserFilms { get; set; } = new List<IdentityUserFilm>();
+
+        public List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

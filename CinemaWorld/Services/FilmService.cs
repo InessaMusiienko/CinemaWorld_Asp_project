@@ -79,6 +79,25 @@ namespace CinemaWorld.Services
                 }).FirstOrDefaultAsync();
         }
 
+        public async Task<DetailsFilmViewModel?> GetFilmDetailsAsync(int id)
+        {
+            return await dbContext.Films
+                .Where(f => f.Id == id)
+                .Select(f => new DetailsFilmViewModel
+                {
+                    Id = f.Id,
+                    Name = f.Name,
+                    Director = f.Director,
+                    Description = f.Description,
+                    VideoUrl = f.VideoUrl,
+                    Rating = f.Rating,
+                    Year = f.Year,
+                    Country = f.Country,
+                    Genre = f.Genre.Name
+                    //Comments = f.Comments
+                }).FirstOrDefaultAsync();
+        }
+
         public async Task RemoveFilmFromFavouritesAsync(string userId, FilmViewModel film)
         {
             var filmToRemove = await dbContext.IdentityUserFilms

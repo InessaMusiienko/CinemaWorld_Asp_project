@@ -48,12 +48,15 @@ namespace CinemaWorld.Data
                 .HasData(films.GenerateFilms());
 
             builder.Entity<IdentityUserFilm>().HasKey(x => new { x.FilmId, x.UserId });
+            builder.Entity<Comment>().HasKey(x => new { x.Id, x.FilmId });
             builder.Entity<Film>().Property(p => p.Rating).HasPrecision(18, 2);
             base.OnModelCreating(builder);
         }
 
         public DbSet<Film> Films { get; set; } = null!;
         public DbSet<Genre> Genres { get; set; } = null!;
+        public DbSet<Comment> Comments { get; set; } = null!;
+        public DbSet<News> News { get; set; } = null!;
         public DbSet<IdentityUserFilm> IdentityUserFilms { get; set; } = null!;
     }
 }

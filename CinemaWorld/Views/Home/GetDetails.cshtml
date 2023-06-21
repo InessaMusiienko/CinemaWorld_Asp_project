@@ -1,21 +1,23 @@
 ﻿@using Microsoft.AspNetCore.Identity;
-@model FilmViewModel
+@model DetailsFilmViewModel
 
 <div class="text-center">
-    <h3>What's new on Cinema World</h3>
+    <h3>@Model.Name</h3>
 </div>
 
 <div class="general-div">
     <section id="movies">
         <div class="sub-div">
                 <article class="movie">
-                    <img class="movie__img" src=@Model.ImageUrl>
-                    <div class="card-body">
-                        <h5 class="movie__title">@Model.Name</h5>   
+                    <iframe width="560" height="315" 
+                        src="https://www.youtube.com/embed/X0tOpBuYasI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                    </iframe>
+                    <div class="card-body">  
+                        <button>@Model.Genre</button>
                         <p>@Model.Rating</p>
                         <p>@Model.Year, @Model.Country</p>
                         <p class="movie__desc">@Model.Description</p>
-                        <p>Director: @Model.Director</p>
+                        <p>Director: @Model.Director</p>                        
                     </div>
 
                     @*<form class="input-group-sm" asp-controller="Home" asp-action="GetDetails" asp-route-id="@film.Id">
@@ -23,7 +25,22 @@
                     </form>*@
 
                 </article>
-            </div>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @*@foreach(var comment in Model.Comments)
+                    {
+
+
+                    }*@
+
+                        <form class="input-group-sm" asp-controller="Film" asp-action="AddComment" asp-route-id="@Model.Id">
+                                <input type="submit" value="Add comment" class="addComment" />
+                        </form>
+                }
+                
+                
+        </div>
     </section>
 </div>
 
