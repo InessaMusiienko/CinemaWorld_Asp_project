@@ -47,6 +47,10 @@ namespace CinemaWorld.Data
             builder.Entity<Film>()
                 .HasData(films.GenerateFilms());
 
+            var news = new NewsEntityConfiguration();
+            builder.Entity<News>()
+                .HasData(news.GenerateNews());
+
             builder.Entity<IdentityUserFilm>().HasKey(x => new { x.FilmId, x.UserId });
             builder.Entity<Comment>().HasKey(x => new { x.Id, x.FilmId });
             builder.Entity<Film>().Property(p => p.Rating).HasPrecision(18, 2);
