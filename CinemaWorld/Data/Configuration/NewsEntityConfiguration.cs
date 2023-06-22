@@ -23,23 +23,12 @@ namespace CinemaWorld.Data.Configuration
             secondNews = new News()
             {
                 Id = 2,
-                Title = "The Hunger Games: The Ballad of Songbirds and Snakes",
-                Description = "Coriolanus Snow mentors and develops feelings for the female District 12 tribute during the 10th Hunger Games.",
-                Date = DateTime.Now,
-                PhotoUrl = "https://m.media-amazon.com/images/M/MV5BMGE1NWZkZGMtMjEzYi00NDUwLTgzNmYtMGY4ZDhjNWMxZjVhXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
-            };
-            news.Add(secondNews);
-
-            News thirdNews;
-            thirdNews = new News()
-            {
-                Id = 3,
                 Title = "Wonka",
                 Description = "The story will focus specifically on a young Willy Wonka and how he met the Oompa-Loompas on one of his earliest adventures.",
                 Date = DateTime.Now,
                 PhotoUrl = "https://pbs.twimg.com/media/FLKj6-paUAA_TGy.jpg"
             };
-            news.Add(thirdNews);
+            news.Add(secondNews);
 
             return news;
 

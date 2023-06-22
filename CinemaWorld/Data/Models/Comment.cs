@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static CinemaWorld.Data.GlobalDataConstraints;
 
 namespace CinemaWorld.Data.Models
 {
@@ -13,6 +14,7 @@ namespace CinemaWorld.Data.Models
         public string Name { get; set; }
 
         [Required]
+        [MaxLength(CommentMaxlenght)]
         public string CommentText { get; set; } = null!;
 
         [Required]

@@ -6,7 +6,7 @@ namespace CinemaWorld.Controllers
 {
     public class NewsController : BaseController
     {
-        [AllowAnonymous]
+        //[AllowAnonymous]
         //public async Task<IActionResult> News()
         //{
         //    var model = await filmService.GetAllFilmsAsync();

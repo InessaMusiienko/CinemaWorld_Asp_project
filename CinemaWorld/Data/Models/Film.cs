@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static CinemaWorld.Data.GlobalDataConstraints;
 
 namespace CinemaWorld.Data.Models
 {
@@ -9,15 +10,15 @@ namespace CinemaWorld.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(NameMaxLenght)]
         public string Name { get; set; } = null!;
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(DirectorMaxLenght)]
         public string Director { get; set; } = null!;
 
         [Required]
-        [MaxLength(5000)]
+        [MaxLength(DescriptionMaxLenght)]
         public string Description { get; set; } = null!;
 
         [Required]
