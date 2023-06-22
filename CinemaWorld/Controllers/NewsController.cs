@@ -1,16 +1,23 @@
-﻿using CinemaWorld.Services;
+﻿using CinemaWorld.Contacts;
+using CinemaWorld.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaWorld.Controllers
-{
+{   
     public class NewsController : BaseController
     {
-        //[AllowAnonymous]
-        //public async Task<IActionResult> News()
-        //{
-        //    var model = await filmService.GetAllFilmsAsync();
-        //    return View(model);
-        //}
+        private readonly IFilmService filmService;
+
+        public NewsController(IFilmService filmService)
+        {
+            this.filmService = filmService;
+        }
+        [AllowAnonymous]
+        public async Task<IActionResult> News()
+        {
+            var model = await filmService.GetAllNewsAsync();
+            return View(model);
+        }
     }
 }

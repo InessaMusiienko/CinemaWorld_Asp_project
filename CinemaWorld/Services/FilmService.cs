@@ -46,6 +46,19 @@ namespace CinemaWorld.Services
                 }).ToListAsync();
         }
 
+        public async Task<IEnumerable<NewsViewModel>> GetAllNewsAsync()
+        {
+            return await dbContext.News
+                .Select(n => new NewsViewModel
+                {
+                    Id = n.Id,
+                    Title = n.Title,
+                    Description = n.Description,
+                    Date = n.Date,
+                    PhotoUrl = n.PhotoUrl
+                }).ToListAsync();
+        }
+
         public async Task<IEnumerable<AllFilmViewModel>> GetFavoutitesAsync(string userId)
         {
             return await dbContext.IdentityUserFilms
@@ -93,10 +106,32 @@ namespace CinemaWorld.Services
                     Rating = f.Rating,
                     Year = f.Year,
                     Country = f.Country,
-                    Genre = f.Genre.Name
-                    //Comments = f.Comments
+                    Genre = f.Genre.Name,
+                    Comments = f.Comments.Select(c=> new CommentViewModel
+                    {
+                        Id= c.Id,
+                        Name = c.Name,
+                        CommentText = c.CommentText,
+                        CretedOn = c.CretedOn,
+                        Film = c.Film.Name
+                    }).ToList()
                 }).FirstOrDefaultAsync();
         }
+
+        //public async Task<CommentFormModel> GetNewCommentModelAsync()
+        //{
+        //    var comment = await dbContext.Comments
+        //        .Select(c => new CommentViewModel
+        //        {
+        //            Id = c.Id,
+        //            Name = c.Name,
+        //            CommentText = c.CommentText,
+        //            CretedOn = DateTime.Now,
+        //            Film = c.Film.Name
+        //        });
+
+        //    return comment;
+        //}
 
         public async Task RemoveFilmFromFavouritesAsync(string userId, FilmViewModel film)
         {
