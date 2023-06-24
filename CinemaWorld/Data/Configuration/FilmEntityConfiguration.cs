@@ -84,6 +84,81 @@ namespace CinemaWorld.Data.Configuration
             };
             films.Add(fifthFilm);
 
+            Film sixthFilm = new Film()
+            {
+                Id = 6,
+                Name = "Avatar: The Way of Water",
+                Description = "Jake Sully lives with his newfound family formed on the extrasolar moon Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their home.",
+                Rating = 7,
+                Director = "James Cameron",
+                Year = "2022",
+                GenreId = 1,
+                ImageUrl = "https://images.thedirect.com/media/tag_thumbnail/avatar-the-way-of-water_VyIagyn.png",
+                VideoUrl = "https://www.youtube.com/watch?v=d9MyW72ELq0",
+                Country = "United States"
+            };
+            films.Add(sixthFilm);
+
+            Film seventhFilm = new Film()
+            {
+                Id = 7,
+                Name = "The Flash",
+                Description = "Barry Allen uses his super speed to change the past, but his attempt to save his family creates a world without super heroes, forcing him to race for his life in order to save the future.",
+                Rating = 7,
+                Director = "Andy Muschietti",
+                Year = "2023",
+                GenreId = 1,
+                ImageUrl = "https://images.lesindesradios.fr/fit-in/1100x2000/filters:format(webp)/radios/voltage/importrk/news/original/5bd72d70386b79.39893365.jpg",
+                VideoUrl = "https://www.youtube.com/watch?v=hebWYacbdvc",
+                Country = "United States"
+            };
+            films.Add(seventhFilm);
+
+            Film eighthFilm = new Film()
+            {
+                Id = 8,
+                Name = "The Little Mermaid",
+                Description = "A young mermaid makes a deal with a sea witch to trade her beautiful voice for human legs so she can discover the world above water and impress a prince.",
+                Rating = 6,
+                Director = "Rob Marshall",
+                Year = "2023",
+                GenreId = 5,
+                ImageUrl = "https://staticc.sportskeeda.com/editor/2023/05/564f7-16838889721714-1920.jpg",
+                VideoUrl = "https://www.youtube.com/watch?v=kpGo2_d3oYE",
+                Country = "United States"
+            };
+            films.Add(eighthFilm);
+
+            Film ninethFilm = new Film()
+            {
+                Id = 9,
+                Name = "Elemental",
+                Description = "Follows Ember and Wade, in a city where fire-, water-, land- and air-residents live together.",
+                Rating = 8,
+                Director = "Peter Sohn",
+                Year = "2023",
+                GenreId = 4,
+                ImageUrl = "https://www.hindustantimes.com/ht-img/img/2023/06/15/1600x900/Screenshot_2023-06-15_185111_1686835310989_1686835321066.png",
+                VideoUrl = "https://www.youtube.com/watch?v=hXzcyx9V0xw",
+                Country = "United States"
+            };
+            films.Add(ninethFilm);
+
+            Film tenthFilm = new Film()
+            {
+                Id = 10,
+                Name = "A Man Called Otto",
+                Description = "Follows Ember and Wade, in a city where fire-, water-, land- and air-residents live together.",
+                Rating = 9,
+                Director = "Marc Forster",
+                Year = "2022",
+                GenreId = 3,
+                ImageUrl = "https://images.hive.blog/p/7b4bio5hobgsatHMcQi2An2xspUC9U8FN8S3zY2E1vASRo1iFqpQAq3pNovHQRTLdqZrNuUDLNzyVCLBqeQ1yW3A2PCWdjsJbN2vcfXkFWqk5TV7At3kyErc74YWka29A1Y7DTVu8QGMC4gfdx8VJKmfvK4A?format=match&mode=fit",
+                VideoUrl = "https://www.youtube.com/watch?v=eFYUX9l-m5I",
+                Country = "United States"
+            };
+            films.Add(tenthFilm);
+
             return films;
         }
     }

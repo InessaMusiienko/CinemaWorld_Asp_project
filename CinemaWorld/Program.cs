@@ -27,11 +27,11 @@ namespace CinemaWorld
             builder.Services.Configure<IdentityOptions>(options =>
             {
                 //password settings
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequiredLength = 6;
+                options.Password.RequireDigit = builder.Configuration.GetValue<bool>("Identity:Password:RequireDigits"); 
+                options.Password.RequireLowercase = builder.Configuration.GetValue<bool>("Identity:Password:RequireLowerCase");
+                options.Password.RequireUppercase = builder.Configuration.GetValue<bool>("Identity:Password:RequireUpperCase"); 
+                options.Password.RequireNonAlphanumeric = builder.Configuration.GetValue<bool>("Identity:Password:RequireNonAlphanumeric"); 
+                options.Password.RequiredLength = builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
 
                 //lockout settings
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
