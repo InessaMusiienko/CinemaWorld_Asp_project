@@ -1,5 +1,6 @@
 using CinemaWorld.Contacts;
 using CinemaWorld.Data;
+using CinemaWorld.Data.Modelbinder;
 using CinemaWorld.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -37,7 +38,11 @@ namespace CinemaWorld
                 options.Lockout.MaxFailedAccessAttempts = 5;
             });
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews()
+                .AddMvcOptions(options =>
+                {
+                    options.ModelBinderProviders.Insert(0, new DecimalModelBindingProvider());
+                });
 
             var app = builder.Build();
 
