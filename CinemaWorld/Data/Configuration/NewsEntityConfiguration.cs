@@ -30,6 +30,26 @@ namespace CinemaWorld.Data.Configuration
             };
             news.Add(secondNews);
 
+            News thirdNews = new News()
+            {
+                Id = 3,
+                Title = "Next Goal Wins",
+                Description = "The story of the infamously terrible American Samoa soccer team, known for a brutal 2001 FIFA match they lost 31-0.",
+                Date = DateTime.Now,
+                PhotoUrl = "https://syn.org.au/app/uploads/Next-Goal-Wins-Movie-Poster-Large.jpg"
+            };
+            news.Add(thirdNews);
+
+            News fourthNews = new News()
+            {
+                Id = 4,
+                Title = "The Hunger Games: The Ballad of Songbirds and Snakes",
+                Description = "Coriolanus Snow mentors and develops feelings for the female District 12 tribute during the 10th Hunger Games.",
+                Date = DateTime.Now,
+                PhotoUrl = "https://static.titlovi.com/img/0313/313021-tt10545296.jpg"
+            };
+            news.Add(fourthNews);
+
             return news;
 
         }

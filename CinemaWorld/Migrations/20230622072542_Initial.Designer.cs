@@ -4,6 +4,7 @@ using CinemaWorld.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaWorld.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230622072542_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,71 +171,6 @@ namespace CinemaWorld.Migrations
                             Rating = 9m,
                             VideoUrl = "https://www.youtube.com/watch?v=Go8nTmfrQd8",
                             Year = "2022"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Country = "United States",
-                            Description = "Jake Sully lives with his newfound family formed on the extrasolar moon Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their home.",
-                            Director = "James Cameron",
-                            GenreId = 1,
-                            ImageUrl = "https://images.thedirect.com/media/tag_thumbnail/avatar-the-way-of-water_VyIagyn.png",
-                            Name = "Avatar: The Way of Water",
-                            Rating = 7m,
-                            VideoUrl = "https://www.youtube.com/watch?v=d9MyW72ELq0",
-                            Year = "2022"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Country = "United States",
-                            Description = "Barry Allen uses his super speed to change the past, but his attempt to save his family creates a world without super heroes, forcing him to race for his life in order to save the future.",
-                            Director = "Andy Muschietti",
-                            GenreId = 1,
-                            ImageUrl = "https://images.lesindesradios.fr/fit-in/1100x2000/filters:format(webp)/radios/voltage/importrk/news/original/5bd72d70386b79.39893365.jpg",
-                            Name = "The Flash",
-                            Rating = 7m,
-                            VideoUrl = "https://www.youtube.com/watch?v=hebWYacbdvc",
-                            Year = "2023"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Country = "United States",
-                            Description = "A young mermaid makes a deal with a sea witch to trade her beautiful voice for human legs so she can discover the world above water and impress a prince.",
-                            Director = "Rob Marshall",
-                            GenreId = 5,
-                            ImageUrl = "https://staticc.sportskeeda.com/editor/2023/05/564f7-16838889721714-1920.jpg",
-                            Name = "The Little Mermaid",
-                            Rating = 6m,
-                            VideoUrl = "https://www.youtube.com/watch?v=kpGo2_d3oYE",
-                            Year = "2023"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Country = "United States",
-                            Description = "Follows Ember and Wade, in a city where fire-, water-, land- and air-residents live together.",
-                            Director = "Peter Sohn",
-                            GenreId = 4,
-                            ImageUrl = "https://www.hindustantimes.com/ht-img/img/2023/06/15/1600x900/Screenshot_2023-06-15_185111_1686835310989_1686835321066.png",
-                            Name = "Elemental",
-                            Rating = 8m,
-                            VideoUrl = "https://www.youtube.com/watch?v=hXzcyx9V0xw",
-                            Year = "2023"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Country = "United States",
-                            Description = "Follows Ember and Wade, in a city where fire-, water-, land- and air-residents live together.",
-                            Director = "Marc Forster",
-                            GenreId = 3,
-                            ImageUrl = "https://images.hive.blog/p/7b4bio5hobgsatHMcQi2An2xspUC9U8FN8S3zY2E1vASRo1iFqpQAq3pNovHQRTLdqZrNuUDLNzyVCLBqeQ1yW3A2PCWdjsJbN2vcfXkFWqk5TV7At3kyErc74YWka29A1Y7DTVu8QGMC4gfdx8VJKmfvK4A?format=match&mode=fit",
-                            Name = "A Man Called Otto",
-                            Rating = 9m,
-                            VideoUrl = "https://www.youtube.com/watch?v=eFYUX9l-m5I",
-                            Year = "2022"
                         });
                 });
 
@@ -330,7 +267,7 @@ namespace CinemaWorld.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2023, 6, 24, 16, 57, 23, 879, DateTimeKind.Local).AddTicks(8662),
+                            Date = new DateTime(2023, 6, 22, 10, 25, 41, 852, DateTimeKind.Local).AddTicks(3920),
                             Description = "A boy becomes the Messiah of nomads on a desert planet that has giant worms that protect a commodity called Spice. Spice changes people into travelers, mystics and madmen. What price will he pay to become the new ruler of their universe?",
                             PhotoUrl = "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
                             Title = "Dune: Part two"
@@ -338,26 +275,10 @@ namespace CinemaWorld.Migrations
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2023, 6, 24, 16, 57, 23, 879, DateTimeKind.Local).AddTicks(8732),
+                            Date = new DateTime(2023, 6, 22, 10, 25, 41, 852, DateTimeKind.Local).AddTicks(4001),
                             Description = "The story will focus specifically on a young Willy Wonka and how he met the Oompa-Loompas on one of his earliest adventures.",
                             PhotoUrl = "https://pbs.twimg.com/media/FLKj6-paUAA_TGy.jpg",
                             Title = "Wonka"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Date = new DateTime(2023, 6, 24, 16, 57, 23, 879, DateTimeKind.Local).AddTicks(8739),
-                            Description = "The story of the infamously terrible American Samoa soccer team, known for a brutal 2001 FIFA match they lost 31-0.",
-                            PhotoUrl = "https://syn.org.au/app/uploads/Next-Goal-Wins-Movie-Poster-Large.jpg",
-                            Title = "Next Goal Wins"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Date = new DateTime(2023, 6, 24, 16, 57, 23, 879, DateTimeKind.Local).AddTicks(8746),
-                            Description = "Coriolanus Snow mentors and develops feelings for the female District 12 tribute during the 10th Hunger Games.",
-                            PhotoUrl = "https://static.titlovi.com/img/0313/313021-tt10545296.jpg",
-                            Title = "The Hunger Games: The Ballad of Songbirds and Snakes"
                         });
                 });
 
