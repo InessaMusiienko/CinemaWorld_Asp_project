@@ -56,6 +56,22 @@ namespace CinemaWorld.Controllers
 
             await filmService.RemoveFilmFromFavouritesAsync(userId, film);
             return RedirectToAction(nameof(Mine));
-        }       
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> FilmByGenre (int id)
+        {
+            var film = await filmService.GetFilmByIdAsync(id);
+
+            if (film == null)
+            {
+                return RedirectToAction(nameof(Mine));
+            }
+
+            var genre = film.GenreId;
+
+            var model = await filmService.GetFilmByGenreAsync(genre);
+            return View(model);
+        }
     }
 }

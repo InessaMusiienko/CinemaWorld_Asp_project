@@ -28,7 +28,10 @@ body {
 article {
     background-color: lightgrey;
     overflow: hidden;
+    height:410px;
     /*border-radius: 12px;*/
+    display: flex;
+    flex-direction: column;
 }
 
 .movie__img {
@@ -55,7 +58,8 @@ article {
     line-height: var(--line-height);
     overflow: hidden;
     position: relative;
-    text-align:center
+    text-align:center;
+ 
 }
 
 .movie__desc::before{
@@ -80,6 +84,8 @@ article #details{
     color: purple;
     padding: 2px 5px;
     font-size: 15px;
+    margin-top: auto;
+    margin-bottom: 3px;
 }
 
 article:hover #details{

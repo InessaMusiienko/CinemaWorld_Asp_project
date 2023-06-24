@@ -3,6 +3,7 @@ using CinemaWorld.Data;
 using CinemaWorld.Data.Models;
 using CinemaWorld.Models;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 
 namespace CinemaWorld.Services
 {
@@ -31,6 +32,20 @@ namespace CinemaWorld.Services
                 await dbContext.IdentityUserFilms.AddAsync(filmToAdd);
                 await dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<IEnumerable<CommentViewModel?>> GetAllCommentsByIdAsync(int id)
+        {
+            return await dbContext.Comments
+                .Where(c => c.FilmId == id.ToString())
+                .Select(c => new CommentViewModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    CommentText = c.CommentText,
+                    CretedOn = DateTime.Now,
+                    Film = c.FilmId
+                }).ToListAsync();
         }
 
         public async Task<IEnumerable<AllFilmViewModel>> GetAllFilmsAsync()
@@ -71,6 +86,22 @@ namespace CinemaWorld.Services
                 Description = f.Film.Description,
                 Genre = f.Film.Genre.Name
             }).ToListAsync();
+        }
+
+        public async Task<IEnumerable<FilmByGenreViewModel>> GetFilmByGenreAsync(int genre)
+        {
+            return await dbContext.Films
+                .Where(f => f.GenreId == genre)
+                .Select(f => new FilmByGenreViewModel
+                {
+                    Id = f.Id,
+                    Name = f.Name,
+                    ImageUrl = f.ImageUrl,
+                    Description = f.Description,
+                    Year = f.Year,
+                    Country = f.Country,
+                    Genre = f.Genre.Name
+                }).ToListAsync();
         }
 
         public async Task<FilmViewModel?> GetFilmByIdAsync(int id)
@@ -117,21 +148,6 @@ namespace CinemaWorld.Services
                     }).ToList()
                 }).FirstOrDefaultAsync();
         }
-
-        //public async Task<CommentFormModel> GetNewCommentModelAsync()
-        //{
-        //    var comment = await dbContext.Comments
-        //        .Select(c => new CommentViewModel
-        //        {
-        //            Id = c.Id,
-        //            Name = c.Name,
-        //            CommentText = c.CommentText,
-        //            CretedOn = DateTime.Now,
-        //            Film = c.Film.Name
-        //        });
-
-        //    return comment;
-        //}
 
         public async Task RemoveFilmFromFavouritesAsync(string userId, FilmViewModel film)
         {

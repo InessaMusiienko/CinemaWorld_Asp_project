@@ -90,8 +90,9 @@ h5 {
     text-transform: capitalize;
     font-size: 15px;
     text-align: left;
-    font-weight:bold;
+    font-weight: bold;
 }
+
 p {
     margin-bottom: 0;
     padding-left: 10px;
@@ -105,7 +106,7 @@ p {
     position: relative;
 }
 
-p::before {
+    p::before {
         content: "";
         position: absolute;
         height: calc(2em * var(line-height));
@@ -113,7 +114,7 @@ p::before {
         bottom: 0;
         pointer-events: none;
         background: linear-gradient(to bottom, transparent, white);
-}
+    }
 
 .addToFavor--thriller,
 .addToFavor--fantasy,
@@ -131,6 +132,7 @@ p::before {
     color: black;
     padding: 2px 5px;
     font-size: 15px;
+    transform: scale(1.2);
 }
 
 .addToFavor--thriller {
@@ -138,36 +140,36 @@ p::before {
     border: 2px solid #5DADE2;
 }
 
-.addToFavor--thriller:active {
+    .addToFavor--thriller:active {
         background-color: #85C1E9;
-}
+    }
 
 .addToFavor--fantasy {
     background-color: white;
     border: 2px solid #F1C40F;
 }
 
-.addToFavor--fantasy:active {
-    background-color:yellow;
-}
+    .addToFavor--fantasy:active {
+        background-color: yellow;
+    }
 
 .addToFavor--animation {
     background-color: white;
     border: 2px solid #28B463;
 }
 
-.addToFavor--animation:active {
-    background-color: #58D68D;
-}
+    .addToFavor--animation:active {
+        background-color: #58D68D;
+    }
 
 .addToFavor--comedy {
     background-color: white;
     border: 2px solid #F3AB18;
 }
 
-.addToFavor--comedy:active {
-    background-color: #FFBE32;
-}
+    .addToFavor--comedy:active {
+        background-color: #FFBE32;
+    }
 
 .addToFavor--action {
     background-color: white;
@@ -177,5 +179,3 @@ p::before {
     .addToFavor--action:active {
         background-color: #BC827C;
     }
-
-   

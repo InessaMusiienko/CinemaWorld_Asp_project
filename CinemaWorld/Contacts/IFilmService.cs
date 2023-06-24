@@ -10,5 +10,12 @@ namespace CinemaWorld.Contacts
         Task AddFilmToFavouritesAsync(string userId, FilmViewModel film);
         Task RemoveFilmFromFavouritesAsync(string userId, FilmViewModel film);
         Task<DetailsFilmViewModel?> GetFilmDetailsAsync(int id);
+        Task<IEnumerable<NewsViewModel>> GetAllNewsAsync();
+        Task <IEnumerable<CommentViewModel?>> GetAllCommentsByIdAsync(int id);
+        Task<IEnumerable<FilmByGenreViewModel>> GetFilmByGenreAsync(int genre);
+
+        //Task<CommentFormModel> GetNewCommentModelAsync();
+
+
     }
 }
