@@ -15,9 +15,29 @@
              <img src="@item.PhotoUrl">
        </div>
        <div class="col">
+                        @if(item.Genre == "Drama")
+                        {
+                            <button class="movie__tag--drama">@item.Genre</button>
+                        }
+                        @if(item.Genre == "Adventure")
+                        {
+                            <button class="movie__tag--adventure">@item.Genre</button>
+                        }                        
+                        @if(item.Genre == "Comedy")
+                        {
+                            <button class="movie__tag--comedy">@item.Genre</button>                            
+                        }  
+                        
            <h3>@item.Title</h3>
-           <h4><b>Created on: </b>@item.Date</h4>
            <p>@item.Description</p> 
+           
+           <a href = @item.VideoUrl>
+               
+               <button class="trailer"> Watch trailer</button>
+           </a>
+
+           <h4><b>Release date: </b>@item.ReleaseDate</h4>
+           <hr />
        </div>
     } 
                    

@@ -21,7 +21,7 @@ body {
 .sub-div {
     margin-bottom: 12px;
     width: 23%;
-    float: left;
+    /*float: left;*/
     margin-left: 12px;
     display: inline-block;
 }
@@ -179,3 +179,6 @@ p {
     .addToFavor--action:active {
         background-color: #BC827C;
     }
+
+
+

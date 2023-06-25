@@ -8,7 +8,9 @@ namespace CinemaWorld.Models
         public int Id { get; set; }
         public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
-        public DateTime Date { get; set; }
+        public string ReleaseDate { get; set; } = null!;
+        public string Genre { get; set; } = null!;
         public string PhotoUrl { get; set; } = null!;
+        public string VideoUrl { get; set; } = null!;
     }
 }

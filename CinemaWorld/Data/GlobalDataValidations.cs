@@ -20,6 +20,10 @@
         public const int NewsMaxLenght = 100;
         public const int NewsMinLenght = 5;
 
+        public const int ReleaseDateMaxLenght = 15;
+
+        public const int ImageUrlMaxLength = 2048;
+
         //Comment
         public const int CommentMaxlenght = 100;
         public const int CommmentMinLenght = 5;

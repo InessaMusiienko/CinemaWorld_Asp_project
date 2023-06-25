@@ -18,9 +18,19 @@ namespace CinemaWorld.Data.Models
         [MaxLength(DescriptionMaxLenght)]
         public string Description { get; set; } = null!;
 
-        public DateTime Date { get; set; }
+        [Required]
+        [MaxLength(ReleaseDateMaxLenght)]
+        public string ReleaseDate { get; set; } = null!;
 
         [Required]
+        [MaxLength(GenreMaxLenght)]
+        public string Genre { get; set; } = null!;
+
+        [Required]
+        [MaxLength(ImageUrlMaxLength)]
         public string PhotoUrl { get; set; } = null!;
+
+        [Required]
+        public string VideoUrl { get; set; } = null!;
     }
 }

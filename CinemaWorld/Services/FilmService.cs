@@ -69,8 +69,10 @@ namespace CinemaWorld.Services
                     Id = n.Id,
                     Title = n.Title,
                     Description = n.Description,
-                    Date = n.Date,
-                    PhotoUrl = n.PhotoUrl
+                    ReleaseDate = n.ReleaseDate,
+                    Genre = n.Genre,
+                    PhotoUrl = n.PhotoUrl,
+                    VideoUrl = n.VideoUrl
                 }).ToListAsync();
         }
 

@@ -40,7 +40,7 @@ namespace CinemaWorld.Controllers
             var userId = GetUserId();
 
             await filmService.AddFilmToFavouritesAsync(userId, film);
-            return RedirectToAction(nameof(Catalogue));
+            return RedirectToAction(nameof(Mine));
         }
 
         public async Task<IActionResult> RemoveFromFavourites(int id)

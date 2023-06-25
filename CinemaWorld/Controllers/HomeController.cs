@@ -23,6 +23,7 @@ namespace CinemaWorld.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> GetDetails(int id)
         {
             var film = await filmService.GetFilmDetailsAsync(id);

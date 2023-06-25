@@ -79,7 +79,8 @@ namespace CinemaWorld.Migrations
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -305,22 +306,34 @@ namespace CinemaWorld.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("PhotoUrl")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
+
+                    b.Property<string>("ReleaseDate")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("VideoUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -330,34 +343,42 @@ namespace CinemaWorld.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2023, 6, 24, 16, 57, 23, 879, DateTimeKind.Local).AddTicks(8662),
                             Description = "A boy becomes the Messiah of nomads on a desert planet that has giant worms that protect a commodity called Spice. Spice changes people into travelers, mystics and madmen. What price will he pay to become the new ruler of their universe?",
+                            Genre = "Drama",
                             PhotoUrl = "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
-                            Title = "Dune: Part two"
+                            ReleaseDate = "November, 2023",
+                            Title = "Dune: Part two",
+                            VideoUrl = "https://www.youtube.com/watch?v=Way9Dexny3w"
                         },
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(2023, 6, 24, 16, 57, 23, 879, DateTimeKind.Local).AddTicks(8732),
                             Description = "The story will focus specifically on a young Willy Wonka and how he met the Oompa-Loompas on one of his earliest adventures.",
+                            Genre = "Adventure",
                             PhotoUrl = "https://pbs.twimg.com/media/FLKj6-paUAA_TGy.jpg",
-                            Title = "Wonka"
+                            ReleaseDate = "December, 2023",
+                            Title = "Wonka",
+                            VideoUrl = "https://www.youtube.com/watch?v=5fwVGfbKC9I"
                         },
                         new
                         {
                             Id = 3,
-                            Date = new DateTime(2023, 6, 24, 16, 57, 23, 879, DateTimeKind.Local).AddTicks(8739),
                             Description = "The story of the infamously terrible American Samoa soccer team, known for a brutal 2001 FIFA match they lost 31-0.",
+                            Genre = "Comedy",
                             PhotoUrl = "https://syn.org.au/app/uploads/Next-Goal-Wins-Movie-Poster-Large.jpg",
-                            Title = "Next Goal Wins"
+                            ReleaseDate = "November, 2023",
+                            Title = "Next Goal Wins",
+                            VideoUrl = "https://www.youtube.com/watch?v=pRH5u5lpArQ"
                         },
                         new
                         {
                             Id = 4,
-                            Date = new DateTime(2023, 6, 24, 16, 57, 23, 879, DateTimeKind.Local).AddTicks(8746),
                             Description = "Coriolanus Snow mentors and develops feelings for the female District 12 tribute during the 10th Hunger Games.",
+                            Genre = "Adventure",
                             PhotoUrl = "https://static.titlovi.com/img/0313/313021-tt10545296.jpg",
-                            Title = "The Hunger Games: The Ballad of Songbirds and Snakes"
+                            ReleaseDate = "November, 2023",
+                            Title = "The Hunger Games: The Ballad of Songbirds and Snakes",
+                            VideoUrl = "https://www.youtube.com/watch?v=RDE6Uz73A7g"
                         });
                 });
 

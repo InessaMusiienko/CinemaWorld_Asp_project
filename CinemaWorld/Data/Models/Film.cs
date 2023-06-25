@@ -22,6 +22,7 @@ namespace CinemaWorld.Data.Models
         public string Description { get; set; } = null!;
 
         [Required]
+        [MaxLength(ImageUrlMaxLength)]
         public string ImageUrl { get; set; } = null!;
 
         [Required]
