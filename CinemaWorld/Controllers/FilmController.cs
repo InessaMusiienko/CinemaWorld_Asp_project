@@ -1,4 +1,5 @@
 ﻿using CinemaWorld.Contacts;
+using CinemaWorld.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -71,6 +72,26 @@ namespace CinemaWorld.Controllers
             var genre = film.GenreId;
 
             var model = await filmService.GetFilmByGenreAsync(genre);
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddNewFilm()
+        {
+            AddFilmViewModel model = await filmService.GetNewAddFilmModelAsync();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddNewFilm(AddFilmViewModel model)
+        {
+            if (ModelState.IsValid == false)
+            {
+                return View(model);
+            }
+
+            await filmService.AddFilmAsync(model);
+
             return View(model);
         }
     }

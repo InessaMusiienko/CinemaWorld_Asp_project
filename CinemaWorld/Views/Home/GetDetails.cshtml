@@ -5,75 +5,50 @@
 }
 
 <link href="~/css/details.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<div class="text-center">
-    <h3>@Model.Name (@Model.Year)</h3> 
-</div>
-
-<div class="general-div">
-    <section id="movies">
-        <div class="sub-div">
-                <article class="movie">
-                    <div class="float-child-video">
-                        <iframe width="560" height="315" 
-                             src=@Model.VideoUrl title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-                        </iframe>       
+<section>
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="image">
+                    <div class="black">                        
+                        <h1 class="name">@Model.Name</h1>
+                        <div class="photo">
+                            <img src= @Model.ImageUrl />
+                        </div>
+                        <div class="star">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <i class="fa-regular fa-star">  @Model.Rating</i>
+                        </div>
+                        <div class="info-back">
+                            <p>
+                                @Model.Description
+                            </p>
+                        </div>
+                        <div class="genre">
+                            <button class="category">@Model.Genre</button>
+                            <button class="category">@Model.Country</button>
+                            <button class="category-year">@Model.Year</button>
+                        </div>
+                        <div class="watch">
+                            <a href = @Model.VideoUrl>
+                                 <i class="fa-solid fa-play"></i>                                
+                             </a>
+                        </div>
                     </div>
-                    <div class="float-child-desc">    
-                        <button>@Model.Genre</button>
 
-                        <p class="text">@Model.Rating</p>
-                        <p class="text"><b>Country: </b>@Model.Country</p>
-                        <p class="text"><b>Director: </b>@Model.Director</p>  
-                        <hr />
-                        <p class="movie__desc">@Model.Description</p>                      
-                    </div>  
-                </article>
-
-                <h3>Commments</h3>
-
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <form id ="commentAdd" method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="form-field">
-                            <label asp-for="@Model.Comments" class="form-label">Name</label>
-                            <input asp-for="@Model.Comments" class="form-control" aria-required="true" />
-                            <span asp-validation-for="@Model.Comments" class="text-danger"></span>
-                        </div>
-                        <div class="form-field">
-                            <label asp-for="@Model.Comments" class="form-label">Your comment</label>
-                            <input asp-for="@Model.Comments" class="form-control" aria-required="true" />
-                            <span asp-validation-for="@Model.Comments" class="text-danger"></span>
-                        </div>
-                        <form class="input-group-sm" asp-controller="Comment" asp-action="Add" asp-route-id="@Model.Id">
-                          <input type="submit" value="Add new comment" class="addComment" />
-                        </form>
-                    </form>                   
-                    
-                }  
-
-                <div class="comment-div">
-                    <section id="moviesSection">
-                            @if (Model.Comments.Count() == 0)
-                            {
-                                <p>Sorry, no comments added!</p>
-                            }
-                            @foreach (var comment in Model.Comments)
-                            {
-                                <div class="sub-div">
-                                    <article>
-                                        <p>@comment.Name</p>
-                                        <p>@comment.CommentText</p>
-                                    </article>
-                                </div>
-                            }
-                    </section>
-
-                <form class="input-group-sm" asp-controller="Home" asp-action="Index">
-                    <input type="submit" value="Back" id="backButton" />
-                </form>                
+                    <img src= "~/css/Pictures/allFilms.jpg" />
+                </div>
+            </div>
         </div>
-    </section>
-</div>
+
+
+    </div>
+</section>
+
 

@@ -12,6 +12,12 @@
         public const int DescriptionMaxLenght = 5000;
         public const int DescriptionMinLenght = 10;
 
+        public const int YearMaxLenght = 5;
+        public const int YearMinLenght = 4;
+
+        public const int CountryMaxLenght = 56;
+        public const int CountryMinLenght = 4;
+
         //Genre
         public const int GenreMaxLenght = 20;
         public const int GenreMinLenght = 4;

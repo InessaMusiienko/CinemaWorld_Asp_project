@@ -16,6 +16,24 @@ namespace CinemaWorld.Services
             this.dbContext = dbContext; 
         }
 
+        public async Task AddFilmAsync(AddFilmViewModel model)
+        {
+            Film film = new Film()
+            {
+                Name = model.Name,
+                Director = model.Director,
+                Description = model.Description,
+                ImageUrl = model.ImageUrl,
+                VideoUrl = model.VideoUrl,
+                Rating = model.Rating,
+                Year = model.Year,
+                Country = model.Country
+            };
+
+            await dbContext.Films.AddAsync(film);
+            await dbContext.SaveChangesAsync();
+        }
+
         public async Task AddFilmToFavouritesAsync(string userId, FilmViewModel film)
         {
             bool isAlreadyAdded = await dbContext.IdentityUserFilms
@@ -135,6 +153,7 @@ namespace CinemaWorld.Services
                     Name = f.Name,
                     Director = f.Director,
                     Description = f.Description,
+                    ImageUrl = f.ImageUrl,
                     VideoUrl = f.VideoUrl,
                     Rating = f.Rating,
                     Year = f.Year,
@@ -149,6 +168,23 @@ namespace CinemaWorld.Services
                         Film = c.Film.Name
                     }).ToList()
                 }).FirstOrDefaultAsync();
+        }
+
+        public async Task<AddFilmViewModel> GetNewAddFilmModelAsync()
+        {
+            var genres = await dbContext.Genres
+                .Select(c => new GenreViewModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                }).ToListAsync();
+
+            var model = new AddFilmViewModel
+            {
+                Genres = genres
+            };
+
+            return model;
         }
 
         public async Task RemoveFilmFromFavouritesAsync(string userId, FilmViewModel film)

@@ -1,4 +1,6 @@
-﻿namespace CinemaWorld.Models
+﻿using static CinemaWorld.Data.GlobalDataConstraints;
+
+namespace CinemaWorld.Models
 {
     public class AllFilmViewModel
     {
