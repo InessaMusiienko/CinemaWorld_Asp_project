@@ -1,5 +1,7 @@
 ﻿using CinemaWorld.Contacts;
+using CinemaWorld.Data;
 using CinemaWorld.Models;
+using CinemaWorld.Models.Film;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -11,17 +13,31 @@ namespace CinemaWorld.Controllers
     public class FilmController : BaseController
     {
         private readonly IFilmService filmService;
+        private readonly ApplicationDbContext dbContext;
 
-        public FilmController(IFilmService filmService)
+        public FilmController(IFilmService filmService, ApplicationDbContext dbContext)
         {
             this.filmService = filmService;
+            this.dbContext = dbContext;
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Catalogue()
+        public async Task<IActionResult> Catalogue([FromQuery] SearchFilmsViewModel query)
         {
-            var model = await filmService.GetAllFilmsAsync();
-            return View(model);
+            var model = await filmService.GetAllFilmsAsync(query);
+
+            var filmGenres = this.dbContext.Films.Select(f=>f.Genre)
+                .Distinct() .ToList();
+
+            return View(new SearchFilmsViewModel
+            {
+                Genres = filmGenres.ToList(),
+                Films = model,
+                SearchTerm = query.SearchTerm,
+                Sorting = query.Sorting,
+                Genre = query.Genre,
+                //totalFilms = query.TotalFilms 
+            });
         }
 
         public async Task<IActionResult> Mine()

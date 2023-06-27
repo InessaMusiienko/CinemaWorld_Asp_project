@@ -2,6 +2,8 @@
 using CinemaWorld.Data;
 using CinemaWorld.Data.Models;
 using CinemaWorld.Models;
+using CinemaWorld.Models.Film;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
 
@@ -66,9 +68,31 @@ namespace CinemaWorld.Services
                 }).ToListAsync();
         }
 
-        public async Task<IEnumerable<AllFilmViewModel>> GetAllFilmsAsync()
+        public async Task<IEnumerable<AllFilmViewModel>> GetAllFilmsAsync([FromQuery] SearchFilmsViewModel query)
         {
-            return await dbContext.Films
+            var filmQuery = this.dbContext.Films.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query.Genre))
+            {
+                filmQuery = filmQuery.Where(f => f.Genre.ToString() == query.Genre);
+            }
+            if (!string.IsNullOrWhiteSpace(query.SearchTerm))
+            {
+                filmQuery = filmQuery.Where(f => f.Name.ToLower().Contains(query.SearchTerm));
+            }
+
+            filmQuery = query.Sorting switch
+            {
+                FilmSorting.DateCreated => filmQuery.OrderByDescending(f => f.Id),
+                FilmSorting.Rating => filmQuery.OrderByDescending(f => f.Rating),
+                FilmSorting.Country  or _ => filmQuery.OrderBy(f=>f.Country)
+            };
+
+            var totalFilms = filmQuery.Count();
+            return await filmQuery
+                .Skip((query.CurrentPage -1) * SearchFilmsViewModel.FilmsPerPage)
+                .Take(SearchFilmsViewModel.FilmsPerPage)
+                .OrderBy(f=>f.Id)
                 .Select(f => new AllFilmViewModel
                 {
                     Id = f.Id, 
@@ -197,6 +221,25 @@ namespace CinemaWorld.Services
                 dbContext.IdentityUserFilms.Remove(filmToRemove);
                 await dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<IEnumerable<AllFilmViewModel>> TakeThreeFilmsAsync()
+        {
+            return await dbContext.Films
+                .OrderBy(f=>f.Rating)
+                .Take(3)
+                .Select(f => new AllFilmViewModel
+                {
+                    Id = f.Id,
+                    Name = f.Name,
+                    Director = f.Director,
+                    ImageUrl = f.ImageUrl,
+                    Year = f.Year,
+                    Country = f.Country,
+                    Description = f.Description,
+                    Rating = f.Rating,
+                    Genre = f.Genre.Name
+                }).ToListAsync();
         }
     }
 }

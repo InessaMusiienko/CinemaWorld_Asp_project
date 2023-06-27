@@ -19,7 +19,7 @@ namespace CinemaWorld.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var model = await filmService.GetAllFilmsAsync();
+            var model = await filmService.TakeThreeFilmsAsync();
             return View(model);
         }
 

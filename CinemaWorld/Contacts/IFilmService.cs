@@ -1,10 +1,12 @@
 ﻿using CinemaWorld.Models;
+using CinemaWorld.Models.Film;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaWorld.Contacts
 {
     public interface IFilmService
     {
-        Task<IEnumerable<AllFilmViewModel>> GetAllFilmsAsync();
+        Task<IEnumerable<AllFilmViewModel>> GetAllFilmsAsync([FromQuery] SearchFilmsViewModel query);
         Task<FilmViewModel?> GetFilmByIdAsync(int id);
         Task<IEnumerable<AllFilmViewModel>> GetFavoutitesAsync(string userId);
         Task AddFilmToFavouritesAsync(string userId, FilmViewModel film);
@@ -15,6 +17,7 @@ namespace CinemaWorld.Contacts
         Task<IEnumerable<FilmByGenreViewModel>> GetFilmByGenreAsync(int genre);
         Task<AddFilmViewModel> GetNewAddFilmModelAsync();
         Task AddFilmAsync(AddFilmViewModel model);
+        Task<IEnumerable<AllFilmViewModel>> TakeThreeFilmsAsync();
 
         //Task<CommentFormModel> GetNewCommentModelAsync();
 
