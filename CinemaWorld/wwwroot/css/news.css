@@ -1,0 +1,101 @@
+body {
+    background-color: #f2f3f4;
+}
+
+.row {
+    
+    width: 100%;
+    margin: 4% auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.col{
+    flex-basis: 25%;
+    text-align:center;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.col img{
+    width: 60%;
+    cursor: pointer;
+    transition: 1s;
+}
+
+    .col p {
+        text-align: justify;
+        margin: 10px;
+        padding: 2px;
+    }
+
+h4{
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.col span {
+    width: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 28px solid darkgrey;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.movie__tag--drama,
+.movie__tag--comedy,
+.movie__tag--adventure {
+    display: block;
+    width: 50%;
+    margin: 0;
+    border: none;
+    border-radius: 12px;
+    padding: 2px 5px;
+    background-color: yellow;
+    border: 2px solid #F1C40F;
+    margin-top: 0;
+    cursor: pointer;
+    font-size: 13px;
+    justify-items: left;
+    justify-self: left;
+    margin-bottom: 2px; 
+}
+
+.movie__tag--drama {
+    background-color: #58D68D;
+    border: 2px solid #28B463;
+    margin-top: 0;
+}
+
+.movie__tag--adventure {
+    background-color: #85C1E9;
+    border: 2px solid #5DADE2;
+}
+
+.trailer {
+    background-color: darkgrey;
+    display: flex;
+    width: 60%;
+    height: 15%;
+    margin: 0;
+    border: none;
+    border-radius: 12px;
+    padding: 2px 5px;
+    border: 2px solid darkgrey;
+    margin: 2px;
+    margin-left: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    justify-items: center;
+    justify-self: center;
+    size: 14px;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
