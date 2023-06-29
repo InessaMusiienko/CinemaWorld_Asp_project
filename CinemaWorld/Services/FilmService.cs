@@ -226,7 +226,7 @@ namespace CinemaWorld.Services
         public async Task<IEnumerable<AllFilmViewModel>> TakeThreeFilmsAsync()
         {
             return await dbContext.Films
-                .OrderBy(f=>f.Rating)
+                .OrderBy(f=>f.Name)
                 .Take(3)
                 .Select(f => new AllFilmViewModel
                 {

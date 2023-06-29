@@ -13,6 +13,7 @@ namespace CinemaWorld.Controllers
         {
             this.filmService = filmService;
         }
+
         [AllowAnonymous]
         public async Task<IActionResult> News()
         {

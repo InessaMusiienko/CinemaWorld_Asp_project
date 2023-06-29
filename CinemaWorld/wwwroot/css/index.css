@@ -23,6 +23,7 @@ body {
     float: left;
     margin-left: 12px;
     display: inline-block;
+
 }
 
 article {
@@ -70,6 +71,7 @@ article {
     bottom: 0;
     pointer-events: none;
     background: linear-gradient(to bottom, transparent, white);
+    margin-bottom: 0;
 }
 
 article #details{
@@ -84,7 +86,7 @@ article #details{
     color: purple;
     padding: 2px 5px;
     font-size: 15px;
-    margin-top: auto;
+    margin-top: 3px;
     margin-bottom: 3px;
 }
 

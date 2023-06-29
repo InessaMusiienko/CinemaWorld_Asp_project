@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using CinemaWorld.Contacts;
+using CinemaWorld.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -6,8 +8,7 @@ namespace CinemaWorld.Controllers
 {
     [Authorize]
     public class BaseController : Controller
-    {
-
+    {        
         public string GetUserId()
         {
             string id = string.Empty;
