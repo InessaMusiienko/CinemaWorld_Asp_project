@@ -29,5 +29,11 @@ namespace CinemaWorld.Controllers
             var film = await filmService.GetFilmDetailsAsync(id);
             return View(film);            
         }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+        }
     }
 }

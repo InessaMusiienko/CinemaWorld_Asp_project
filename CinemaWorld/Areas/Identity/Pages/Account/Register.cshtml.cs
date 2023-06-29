@@ -115,8 +115,7 @@ namespace CinemaWorld.Areas.Identity.Pages.Account
                 }
             }
             return Page();
-        }
-
+        }      
         private IdentityUser CreateUser()
         {
             try
@@ -132,3 +131,5 @@ namespace CinemaWorld.Areas.Identity.Pages.Account
         }
     }
 }
+
+
