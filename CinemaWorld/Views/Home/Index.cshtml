@@ -1,5 +1,4 @@
 ﻿@using Microsoft.AspNetCore.Identity;
-@using CinemaWorld.Models.Film;
 @model IEnumerable<AllFilmViewModel>
 @{
     ViewData["Title"] = "Home Page";
@@ -32,6 +31,12 @@
         }
     </section>
 </div>
+
+ <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; @DateTime.Now.Year - Cinema World
+        </div>
+    </footer>
 
 
 

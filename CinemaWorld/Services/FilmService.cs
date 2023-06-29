@@ -68,14 +68,10 @@ namespace CinemaWorld.Services
                 }).ToListAsync();
         }
 
-        public async Task<IEnumerable<AllFilmViewModel>> GetAllFilmsAsync([FromQuery] SearchFilmsViewModel query)
+        public async Task<IEnumerable<AllFilmViewModel>> GetAllFilmsAsync([FromQuery] AllFilmsQueryModel query)
         {
             var filmQuery = this.dbContext.Films.AsQueryable();
-
-            if (!string.IsNullOrWhiteSpace(query.Genre))
-            {
-                filmQuery = filmQuery.Where(f => f.Genre.ToString() == query.Genre);
-            }
+                        
             if (!string.IsNullOrWhiteSpace(query.SearchTerm))
             {
                 filmQuery = filmQuery.Where(f => f.Name.ToLower().Contains(query.SearchTerm));
@@ -90,14 +86,15 @@ namespace CinemaWorld.Services
 
             var totalFilms = filmQuery.Count();
             return await filmQuery
-                .Skip((query.CurrentPage -1) * SearchFilmsViewModel.FilmsPerPage)
-                .Take(SearchFilmsViewModel.FilmsPerPage)
-                .OrderBy(f=>f.Id)
+                .Skip((query.CurrentPage -1) * AllFilmsQueryModel.FilmsPerPage)
+                .Take(AllFilmsQueryModel.FilmsPerPage)
                 .Select(f => new AllFilmViewModel
                 {
                     Id = f.Id, 
                     Name = f.Name,
                     ImageUrl = f.ImageUrl,
+                    Rating = f.Rating,
+                    Country = f.Country,
                     Description = f.Description,
                     Genre = f.Genre.Name
                 }).ToListAsync();

@@ -22,21 +22,19 @@ namespace CinemaWorld.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Catalogue([FromQuery] SearchFilmsViewModel query)
+        public async Task<IActionResult> Catalogue([FromQuery] AllFilmsQueryModel query)
         {
             var model = await filmService.GetAllFilmsAsync(query);
 
             var filmGenres = this.dbContext.Films.Select(f=>f.Genre)
-                .Distinct() .ToList();
+                .Distinct().ToList();
 
-            return View(new SearchFilmsViewModel
+            return View(new AllFilmsQueryModel
             {
-                Genres = filmGenres.ToList(),
+                
                 Films = model,
                 SearchTerm = query.SearchTerm,
-                Sorting = query.Sorting,
-                Genre = query.Genre,
-                //totalFilms = query.TotalFilms 
+                Sorting = query.Sorting
             });
         }
 

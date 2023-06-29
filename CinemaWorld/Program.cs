@@ -49,15 +49,16 @@ namespace CinemaWorld
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                app.UseMigrationsEndPoint();
                 app.UseDeveloperExceptionPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                
+           
                 app.UseHsts();
             }
+
+            app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

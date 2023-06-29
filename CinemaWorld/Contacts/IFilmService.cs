@@ -6,7 +6,7 @@ namespace CinemaWorld.Contacts
 {
     public interface IFilmService
     {
-        Task<IEnumerable<AllFilmViewModel>> GetAllFilmsAsync([FromQuery] SearchFilmsViewModel query);
+        Task<IEnumerable<AllFilmViewModel>> GetAllFilmsAsync([FromQuery] AllFilmsQueryModel query);
         Task<FilmViewModel?> GetFilmByIdAsync(int id);
         Task<IEnumerable<AllFilmViewModel>> GetFavoutitesAsync(string userId);
         Task AddFilmToFavouritesAsync(string userId, FilmViewModel film);
