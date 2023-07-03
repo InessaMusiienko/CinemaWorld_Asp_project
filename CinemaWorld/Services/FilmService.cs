@@ -29,11 +29,13 @@ namespace CinemaWorld.Services
                 VideoUrl = model.VideoUrl,
                 Rating = model.Rating,
                 Year = model.Year,
-                Country = model.Country
+                Country = model.Country,
+                GenreId = model.GenreId
             };
 
             await dbContext.Films.AddAsync(film);
             await dbContext.SaveChangesAsync();
+
         }
 
         public async Task AddFilmToFavouritesAsync(string userId, FilmViewModel film)
@@ -79,15 +81,17 @@ namespace CinemaWorld.Services
 
             filmQuery = query.Sorting switch
             {
-                FilmSorting.DateCreated => filmQuery.OrderByDescending(f => f.Id),
-                FilmSorting.Rating => filmQuery.OrderByDescending(f => f.Rating),
-                FilmSorting.Country  or _ => filmQuery.OrderBy(f=>f.Country)
+                FilmSorting.RatingAscending => filmQuery.OrderBy(f => f.Rating),
+                FilmSorting.RatingDescending => filmQuery.OrderByDescending(f => f.Rating),
+                _ => filmQuery.OrderByDescending(f=>f.Id)
             };
 
             var totalFilms = filmQuery.Count();
+            query.TotalFilms = totalFilms;
+                        
             return await filmQuery
-                .Skip((query.CurrentPage -1) * AllFilmsQueryModel.FilmsPerPage)
-                .Take(AllFilmsQueryModel.FilmsPerPage)
+                .Skip((query.CurrentPage -1) * query.FilmsPerPage)
+                .Take(query.FilmsPerPage)
                 .Select(f => new AllFilmViewModel
                 {
                     Id = f.Id, 
@@ -191,23 +195,6 @@ namespace CinemaWorld.Services
                 }).FirstOrDefaultAsync();
         }
 
-        public async Task<AddFilmViewModel> GetNewAddFilmModelAsync()
-        {
-            var genres = await dbContext.Genres
-                .Select(c => new GenreViewModel
-                {
-                    Id = c.Id,
-                    Name = c.Name
-                }).ToListAsync();
-
-            var model = new AddFilmViewModel
-            {
-                Genres = genres
-            };
-
-            return model;
-        }
-
         public async Task RemoveFilmFromFavouritesAsync(string userId, FilmViewModel film)
         {
             var filmToRemove = await dbContext.IdentityUserFilms
@@ -238,5 +225,20 @@ namespace CinemaWorld.Services
                     Genre = f.Genre.Name
                 }).ToListAsync();
         }
-    }
+
+        //private static IEnumerable<FilmViewModel> GetFilm(IQuerable<Film> film) =>
+                //    dbContext.Films
+                //.Select(f => new AllFilmViewModel
+                //{
+                //    Id = f.Id,
+                //    Name = f.Name,
+                //    Director = f.Director,
+                //    ImageUrl = f.ImageUrl,
+                //    Year = f.Year,
+                //    Country = f.Country,
+                //    Description = f.Description,
+                //    Rating = f.Rating,
+                //    Genre = f.Genre.Name
+                         //}).ToListAsync();
+}
 }

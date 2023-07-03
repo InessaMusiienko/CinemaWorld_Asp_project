@@ -40,10 +40,9 @@ namespace CinemaWorld.Models.Film
             ErrorMessage = "Country should be at least {2} characters long.")]
         public string Country { get; set; } = null!;
 
-        [Required]
-        [Range(1, int.MaxValue)]
+        [Display(Name = "Genre")]
         public int GenreId { get; set; }
-        public IEnumerable<GenreViewModel> Genres { get; set; } = null!;
+        public IEnumerable<GenreViewModel> Genres { get; set; } = new HashSet<GenreViewModel>();
 
     }
 }

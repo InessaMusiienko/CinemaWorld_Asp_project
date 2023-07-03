@@ -1,10 +1,12 @@
 ﻿using CinemaWorld.Contacts;
 using CinemaWorld.Data;
+using CinemaWorld.Data.Models;
 using CinemaWorld.Models;
 using CinemaWorld.Models.Film;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
 using System.Security.Claims;
 
@@ -13,21 +15,20 @@ namespace CinemaWorld.Controllers
     public class FilmController : BaseController
     {
         private readonly IFilmService filmService;
+        private readonly IGenreService genreService;
         private readonly ApplicationDbContext dbContext;
 
-        public FilmController(IFilmService filmService, ApplicationDbContext dbContext)
+        public FilmController(IFilmService filmService, ApplicationDbContext dbContext, IGenreService genreService)
         {
             this.filmService = filmService;
             this.dbContext = dbContext;
+            this.genreService = genreService;
         }
 
         [AllowAnonymous]
         public async Task<IActionResult> Catalogue([FromQuery] AllFilmsQueryModel query)
         {
             var model = await filmService.GetAllFilmsAsync(query);
-
-            var filmGenres = this.dbContext.Films.Select(f=>f.Genre)
-                .Distinct().ToList();
 
             return View(new AllFilmsQueryModel
             {
@@ -92,15 +93,23 @@ namespace CinemaWorld.Controllers
         [HttpGet]
         public async Task<IActionResult> AddNewFilm()
         {
-            AddFilmViewModel model = await filmService.GetNewAddFilmModelAsync();
-            return View(model);
+            return View(new AddFilmViewModel
+            {
+                Genres = await genreService.AllGenresAsync()
+            });
         }
 
         [HttpPost]
         public async Task<IActionResult> AddNewFilm(AddFilmViewModel model)
         {
+            bool genreExist = await this.genreService.ExistByIdAsync(model.GenreId);
+            if (!genreExist)
+            {
+                throw new ArgumentException("Selected genre doesn't exist");
+            }
             if (ModelState.IsValid == false)
             {
+                model.Genres = await genreService.AllGenresAsync();
                 return View(model);
             }
 
@@ -108,5 +117,58 @@ namespace CinemaWorld.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var genres = await dbContext.Genres
+               .Select(c => new GenreViewModel
+               {
+                   Id = c.Id,
+                   Name = c.Name
+               }).ToListAsync();
+
+            var film = dbContext.Films
+                .Where(f => f.Id == id).FirstOrDefault();
+
+            return View(new AddFilmViewModel
+            {
+                    Name = film.Name,
+                    Director = film.Director,
+                    Description = film.Description,
+                    ImageUrl = film.ImageUrl,
+                    VideoUrl = film.VideoUrl,
+                    Rating = film.Rating,
+                    Year = film.Year,
+                    Country = film.Country,
+                    GenreId = film.GenreId,
+                    Genres = genres
+            });
+        }
+
+        //[HttpPost]
+        //public async Task<IActionResult> Edit(int id, string name, string director, string description, string imageUrl, string videoUrl, 
+        //    decimal rating, string year, string country, AddFilmViewModel model)
+        //{
+        //    if (ModelState.IsValid == false)
+        //    {
+        //        return View(model);
+        //    }
+
+        //    var film = dbContext.Films.Find(id);
+
+        //    film.Name = name;
+        //    film.Director = director;
+        //    film.Description = description;
+        //    film.ImageUrl = imageUrl;
+        //    film.VideoUrl = videoUrl;
+        //    film.Rating = rating;
+        //    film.Year = year;
+        //    film.Country = country;
+
+        //    await dbContext.Films.AddAsync(film);
+        //    await dbContext.SaveChangesAsync();
+        //}
+        
     }
 }

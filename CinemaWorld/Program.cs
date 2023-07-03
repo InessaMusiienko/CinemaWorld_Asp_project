@@ -20,6 +20,7 @@ namespace CinemaWorld
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddScoped<IFilmService, FilmService>();
+            builder.Services.AddScoped<IGenreService, GenreService>();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

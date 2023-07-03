@@ -9,6 +9,10 @@
 
 <div class="general-div">
     <section id="moviesSection">
+        @if(!Model.Any())
+        {
+            <h2 class="text-center">You don't have any films yet!</h2>
+        }
         @foreach (var film in Model)
         {
             <div class="sub-div">
@@ -18,28 +22,39 @@
                     <div class="card-body">
                         @if(film.Genre == "Thriller")
                         {
-                            <button class="movie__tag--thriller">@film.Genre</button>
+                            <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
+                                <input type="submit" value="Thriller" class="movie__tag--thriller" />
+                            </form>
                         }
                         @if(film.Genre == "Fantasy")
                         {
-                            <button class="movie__tag--fantasy">@film.Genre</button>
+                             <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
+                                <input type="submit" value="Fantasy" class="movie__tag--fantasy" />
+                            </form>
                         }
                         @if(film.Genre == "Animation")
                         {
-                            <button class="movie__tag--animation">@film.Genre</button>
+                             <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
+                                <input type="submit" value="Animation" class="movie__tag--animation" />
+                            </form>
                         }
                         @if(film.Genre == "Comedy")
                         {
-                            <button class="movie__tag--comedy">@film.Genre</button>
+                             <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
+                                <input type="submit" value="Comedy" class="movie__tag--comedy" />
+                            </form>
                         }   
                         @if(film.Genre == "Action")
                         {
-                            <button class="movie__tag--action">@film.Genre</button>
+                             <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
+                                <input type="submit" value="Action" class="movie__tag--action" />
+                            </form>
                         } 
                         <h5>@film.Name</h5>
                         <p>@film.Description</p>
                     </div>
                 </article>
+
 
                 @if (User.Identity.IsAuthenticated)
                 {

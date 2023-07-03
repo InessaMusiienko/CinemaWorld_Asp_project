@@ -15,7 +15,6 @@ namespace CinemaWorld.Contacts
         Task<IEnumerable<NewsViewModel>> GetAllNewsAsync();
         Task <IEnumerable<CommentViewModel?>> GetAllCommentsByIdAsync(int id);
         Task<IEnumerable<FilmByGenreViewModel>> GetFilmByGenreAsync(int genre);
-        Task<AddFilmViewModel> GetNewAddFilmModelAsync();
         Task AddFilmAsync(AddFilmViewModel model);
         Task<IEnumerable<AllFilmViewModel>> TakeThreeFilmsAsync();
 
