@@ -18,7 +18,7 @@ namespace CinemaWorld.Services
             this.dbContext = dbContext; 
         }
 
-        public async Task AddFilmAsync(AddFilmViewModel model)
+        public async Task<int> AddFilmAsync(AddFilmViewModel model)
         {
             Film film = new Film()
             {
@@ -36,6 +36,7 @@ namespace CinemaWorld.Services
             await dbContext.Films.AddAsync(film);
             await dbContext.SaveChangesAsync();
 
+            return film.Id;
         }
 
         public async Task AddFilmToFavouritesAsync(string userId, FilmViewModel film)
@@ -54,6 +55,33 @@ namespace CinemaWorld.Services
                 await dbContext.IdentityUserFilms.AddAsync(filmToAdd);
                 await dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task DeleteFilmByIdAsync(int id)
+        {
+            var filmToDelete = await this.dbContext.Films
+                .FirstAsync(f => f.Id == id);
+
+            dbContext.Remove(filmToDelete);
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task EditFilmById(int id, AddFilmViewModel model)
+        {
+            var film = await this.dbContext.Films
+                .FirstAsync(f => f.Id == id);
+
+            film.Name = model.Name;
+            film.Director = model.Director;
+            film.Description = model.Description;
+            film.ImageUrl = model.ImageUrl;
+            film.VideoUrl = model.VideoUrl;
+            film.Rating = model.Rating;
+            film.Year = model.Year;
+            film.Country = model.Country;
+
+            await this.dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<CommentViewModel?>> GetAllCommentsByIdAsync(int id)
@@ -193,6 +221,39 @@ namespace CinemaWorld.Services
                         Film = c.Film.Name
                     }).ToList()
                 }).FirstOrDefaultAsync();
+        }
+
+        public async Task<FilmDeleteViewModel> GetFilmForDeleteByIdAsync(int Id)
+        {
+            var film = await dbContext.Films
+                .FirstAsync(f => f.Id == Id);
+
+            return new FilmDeleteViewModel()
+            {
+                Name = film.Name,
+                Description = film.Description,
+                ImageUrl = film.ImageUrl
+            };
+        }
+
+        public async Task<AddFilmViewModel> GetFilmForEditAsync(int id)
+        {
+            Film film = await dbContext.Films
+                .Include(f => f.Genre)
+                .FirstAsync(f => f.Id == id);
+
+            return new AddFilmViewModel
+            {
+                Name = film.Name,
+                Director = film.Director,
+                Description = film.Description,
+                ImageUrl = film.ImageUrl,
+                VideoUrl = film.VideoUrl,
+                Rating = film.Rating,
+                Year = film.Year,
+                Country = film.Country,
+                GenreId = film.GenreId
+            };
         }
 
         public async Task RemoveFilmFromFavouritesAsync(string userId, FilmViewModel film)

@@ -1,0 +1,46 @@
+﻿@model FilmDeleteViewModel
+@{
+ ViewBag.Title = "Delete Film";
+}
+
+<link href="~/css/delete.css" rel="stylesheet" type="text/css">
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form asp-action="Delete">
+    <div class="row">
+        <div class="col-md-4">
+            <img class="card-img-top" src="@Model.ImageUrl" alt="Film Image">
+        </div>
+    <div class="col-md-8">
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" disabled="disabled" />
+        </div>
+    <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <input asp-for="Description" class="form-control" disabled="disabled" />
+    </div>
+        <div class="form-group mt-2">
+        <input type="submit" value="Delete" class="btn" onclick="openPopup()"/>
+            <div class="popup" id="popup">
+                <img src="~/css/Pictures/tick.png" />
+                <h2>The film was deleted.</h2>
+                <p>Click ok to continue.</p>
+                <button type="button" onclick="closePopup()">OK</button>
+            </div>
+    </div>
+ </div>
+ </div>
+</form>
+
+            <script>
+                let popup = document.getElementById("popup");
+                function openPopup(){
+                    popup.classList.add("open-popup");
+                }
+                function closePopup(){
+                    popup.classList.remove("open-popup");
+                }
+            </script>

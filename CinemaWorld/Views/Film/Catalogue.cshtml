@@ -49,10 +49,9 @@
 <div class="general-div">
     @if(!User.Identity.IsAuthenticated)
             {
-                <div class="alert alert-warning alert-dismissible">
+                <div class="alert alert-warning alert-dismissible col-md-12">
                     <a class="close" data-dismiss="=alert" aria-label="close"></a>
-                    <strong>Login!</strong>
-                    To have the opportunity add films to your favourites.
+                    <p><a asp-page="/Login">Login!</a> To have the opportunity add films to your favourites.</p>                    
                 </div>
             }
     <section id="moviesSection">
@@ -168,3 +167,6 @@
     </div>
 </div>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

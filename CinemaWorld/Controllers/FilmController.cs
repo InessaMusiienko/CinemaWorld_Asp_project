@@ -113,62 +113,68 @@ namespace CinemaWorld.Controllers
                 return View(model);
             }
 
-            await filmService.AddFilmAsync(model);
-
-            return View(model);
+            try
+            {
+                int filmId = await filmService.AddFilmAsync(model);
+                return RedirectToAction("GetDetails", "Home", new { id = filmId });
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("Unexpected error");
+                model.Genres = await this.genreService.AllGenresAsync();
+                return View(model);
+            }        
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var genres = await dbContext.Genres
-               .Select(c => new GenreViewModel
-               {
-                   Id = c.Id,
-                   Name = c.Name
-               }).ToListAsync();
+            var film = await filmService.GetFilmByIdAsync(id);
 
-            var film = dbContext.Films
-                .Where(f => f.Id == id).FirstOrDefault();
-
-            return View(new AddFilmViewModel
+            if (film == null)
             {
-                    Name = film.Name,
-                    Director = film.Director,
-                    Description = film.Description,
-                    ImageUrl = film.ImageUrl,
-                    VideoUrl = film.VideoUrl,
-                    Rating = film.Rating,
-                    Year = film.Year,
-                    Country = film.Country,
-                    GenreId = film.GenreId,
-                    Genres = genres
-            });
+                return RedirectToAction("Catalogue", "Film");
+            }
+
+            var filmModel = await this.filmService.GetFilmForEditAsync(id);
+            filmModel.Genres = await this.genreService.AllGenresAsync();
+            return this.View(filmModel);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Edit(int id, string name, string director, string description, string imageUrl, string videoUrl, 
-        //    decimal rating, string year, string country, AddFilmViewModel model)
-        //{
-        //    if (ModelState.IsValid == false)
-        //    {
-        //        return View(model);
-        //    }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, AddFilmViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Genres = await this.genreService.AllGenresAsync();
+                return View(model);
+            }
 
-        //    var film = dbContext.Films.Find(id);
+            try
+            {
+                await this.filmService.EditFilmById(id, model);
+            }
+            catch(Exception)
+            {
+                throw new ArgumentException("Unexpected error");
+                model.Genres = await this.genreService.AllGenresAsync();
+                return View(model);
+            }
 
-        //    film.Name = name;
-        //    film.Director = director;
-        //    film.Description = description;
-        //    film.ImageUrl = imageUrl;
-        //    film.VideoUrl = videoUrl;
-        //    film.Rating = rating;
-        //    film.Year = year;
-        //    film.Country = country;
+            return RedirectToAction("Catalogue", "Film");
+        }
 
-        //    await dbContext.Films.AddAsync(film);
-        //    await dbContext.SaveChangesAsync();
-        //}
-        
+        public async Task<IActionResult> Delete(int id)
+        {
+            var model = await this.filmService.GetFilmForDeleteByIdAsync(id);
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id, FilmDeleteViewModel filmModel)
+        {
+            await this.filmService.DeleteFilmByIdAsync(id);
+
+            return RedirectToAction("Catalogue", "Film");
+        }
     }
 }
