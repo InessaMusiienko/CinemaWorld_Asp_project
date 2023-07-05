@@ -84,20 +84,6 @@ namespace CinemaWorld.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<CommentViewModel?>> GetAllCommentsByIdAsync(int id)
-        {
-            return await dbContext.Comments
-                .Where(c => c.FilmId == id.ToString())
-                .Select(c => new CommentViewModel
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    CommentText = c.CommentText,
-                    CretedOn = DateTime.Now,
-                    Film = c.FilmId
-                }).ToListAsync();
-        }
-
         public async Task<IEnumerable<AllFilmViewModel>> GetAllFilmsAsync([FromQuery] AllFilmsQueryModel query)
         {
             var filmQuery = this.dbContext.Films.AsQueryable();

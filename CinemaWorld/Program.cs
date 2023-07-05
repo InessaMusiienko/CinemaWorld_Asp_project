@@ -4,6 +4,7 @@ using CinemaWorld.Data.Modelbinder;
 using CinemaWorld.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing.Text;
 
 namespace CinemaWorld
 {
@@ -21,8 +22,10 @@ namespace CinemaWorld
 
             builder.Services.AddScoped<IFilmService, FilmService>();
             builder.Services.AddScoped<IGenreService, GenreService>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.Configure<IdentityOptions>(options =>

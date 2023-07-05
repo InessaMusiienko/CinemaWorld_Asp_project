@@ -13,20 +13,14 @@ namespace CinemaWorld.Contacts
         Task RemoveFilmFromFavouritesAsync(string userId, FilmViewModel film);
         Task<DetailsFilmViewModel?> GetFilmDetailsAsync(int id);
         Task<IEnumerable<NewsViewModel>> GetAllNewsAsync();
-        Task <IEnumerable<CommentViewModel?>> GetAllCommentsByIdAsync(int id);
         Task<IEnumerable<FilmByGenreViewModel>> GetFilmByGenreAsync(int genre);
         Task<int> AddFilmAsync(AddFilmViewModel model);
         Task<IEnumerable<AllFilmViewModel>> TakeThreeFilmsAsync();
-
         Task<FilmDeleteViewModel> GetFilmForDeleteByIdAsync (int Id);
-
         Task<AddFilmViewModel> GetFilmForEditAsync(int id);
-
         Task EditFilmById(int id, AddFilmViewModel model);
-
         Task DeleteFilmByIdAsync(int id);
 
-        //Task<CommentFormModel> GetNewCommentModelAsync();
 
 
     }

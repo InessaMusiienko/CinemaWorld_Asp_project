@@ -16,12 +16,10 @@ namespace CinemaWorld.Controllers
     {
         private readonly IFilmService filmService;
         private readonly IGenreService genreService;
-        private readonly ApplicationDbContext dbContext;
 
-        public FilmController(IFilmService filmService, ApplicationDbContext dbContext, IGenreService genreService)
+        public FilmController(IFilmService filmService, IGenreService genreService)
         {
             this.filmService = filmService;
-            this.dbContext = dbContext;
             this.genreService = genreService;
         }
 
