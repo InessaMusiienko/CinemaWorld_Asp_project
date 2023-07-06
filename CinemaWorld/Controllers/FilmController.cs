@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
 using System.Security.Claims;
 
+using static CinemaWorld.Data.WebConstants;
+
 namespace CinemaWorld.Controllers
 {
     public class FilmController : BaseController
@@ -114,6 +116,9 @@ namespace CinemaWorld.Controllers
             try
             {
                 int filmId = await filmService.AddFilmAsync(model);
+
+                this.TempData[GlobalMessageKey] = "Film was successfully added.";
+
                 return RedirectToAction("GetDetails", "Home", new { id = filmId });
             }
             catch (Exception)
@@ -121,7 +126,8 @@ namespace CinemaWorld.Controllers
                 throw new ArgumentException("Unexpected error");
                 model.Genres = await this.genreService.AllGenresAsync();
                 return View(model);
-            }        
+            }  
+                        
         }
 
         [HttpGet]
@@ -159,6 +165,8 @@ namespace CinemaWorld.Controllers
                 return View(model);
             }
 
+            this.TempData[GlobalMessageKey] = "Film information was updated.";
+
             return RedirectToAction("Catalogue", "Film");
         }
 
@@ -171,6 +179,8 @@ namespace CinemaWorld.Controllers
         public async Task<IActionResult> Delete(int id, FilmDeleteViewModel filmModel)
         {
             await this.filmService.DeleteFilmByIdAsync(id);
+
+            this.TempData[GlobalMessageKey] = "Film was successfully deleted.";
 
             return RedirectToAction("Catalogue", "Film");
         }

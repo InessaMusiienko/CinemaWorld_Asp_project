@@ -23,24 +23,8 @@
             <input asp-for="Description" class="form-control" disabled="disabled" />
     </div>
         <div class="form-group mt-2">
-        <input type="submit" value="Delete" class="btn" onclick="openPopup()"/>
-            <div class="popup" id="popup">
-                <img src="~/css/Pictures/tick.png" />
-                <h2>The film was deleted.</h2>
-                <p>Click ok to continue.</p>
-                <button type="button" onclick="closePopup()">OK</button>
-            </div>
+        <input type="submit" value="Delete" class="btn"/>            
     </div>
  </div>
  </div>
 </form>
-
-            <script>
-                let popup = document.getElementById("popup");
-                function openPopup(){
-                    popup.classList.add("open-popup");
-                }
-                function closePopup(){
-                    popup.classList.remove("open-popup");
-                }
-            </script>
