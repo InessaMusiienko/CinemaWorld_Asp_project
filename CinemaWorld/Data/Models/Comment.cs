@@ -8,7 +8,7 @@ namespace CinemaWorld.Data.Models
     public class Comment
     {
         [Key]
-        public int Id { get; set; }
+        public int commentId { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -22,7 +22,7 @@ namespace CinemaWorld.Data.Models
 
         [Key]
         [ForeignKey(nameof(FilmId))]
-        public string FilmId { get; set; } = null!;        
+        public int FilmId { get; set; }  
         public Film Film { get; set; } = null!;
     }
 }

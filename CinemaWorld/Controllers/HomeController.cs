@@ -3,6 +3,7 @@ using CinemaWorld.Models;
 using CinemaWorld.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Diagnostics;
 
 namespace CinemaWorld.Controllers

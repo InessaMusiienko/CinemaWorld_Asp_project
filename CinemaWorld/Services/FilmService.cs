@@ -127,7 +127,7 @@ namespace CinemaWorld.Services
                     Title = n.Title,
                     Description = n.Description,
                     ReleaseDate = n.ReleaseDate,
-                    Genre = n.Genre,
+                    GenreId = n.GenreId,
                     PhotoUrl = n.PhotoUrl,
                     VideoUrl = n.VideoUrl
                 }).ToListAsync();
@@ -200,11 +200,11 @@ namespace CinemaWorld.Services
                     Genre = f.Genre.Name,
                     Comments = f.Comments.Select(c=> new CommentViewModel
                     {
-                        Id= c.Id,
+                        Id= c.commentId,
                         Name = c.Name,
                         CommentText = c.CommentText,
                         CretedOn = c.CretedOn,
-                        Film = c.Film.Name
+                        FilmId = c.FilmId
                     }).ToList()
                 }).FirstOrDefaultAsync();
         }

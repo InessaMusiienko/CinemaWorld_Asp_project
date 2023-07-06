@@ -42,13 +42,14 @@ namespace CinemaWorld.Controllers
             var comment = new Comment()
             {
                 Name = model.Name,
-                CommentText = model.CommentText
+                CommentText = model.CommentText,
+                FilmId = model.Id
             };
 
             await dbContext.Comments.AddAsync(comment);
             await dbContext.SaveChangesAsync();
 
-            return RedirectToAction("GetDetails", "Home");
+            return RedirectToAction("GetDetails", "Home", new {id = model.Id});
         }
 
         public async Task<IActionResult> AllCommentsById(int id)

@@ -4,6 +4,7 @@ using CinemaWorld.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaWorld.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230706160718_changeCommentModel")]
+    partial class changeCommentModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,11 +26,11 @@ namespace CinemaWorld.Migrations
 
             modelBuilder.Entity("CinemaWorld.Data.Models.Comment", b =>
                 {
-                    b.Property<int>("commentId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("FilmId")
-                        .HasColumnType("int");
+                    b.Property<string>("FilmId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CommentText")
                         .IsRequired()
@@ -38,13 +40,16 @@ namespace CinemaWorld.Migrations
                     b.Property<DateTime>("CretedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("FilmId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("commentId", "FilmId");
+                    b.HasKey("Id", "FilmId");
 
-                    b.HasIndex("FilmId");
+                    b.HasIndex("FilmId1");
 
                     b.ToTable("Comments");
                 });
@@ -277,11 +282,6 @@ namespace CinemaWorld.Migrations
                         {
                             Id = 5,
                             Name = "Fantasy"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Drama"
                         });
                 });
 
@@ -313,8 +313,10 @@ namespace CinemaWorld.Migrations
                         .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GenreId")
-                        .HasColumnType("int");
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("PhotoUrl")
                         .IsRequired()
@@ -337,8 +339,6 @@ namespace CinemaWorld.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GenreId");
-
                     b.ToTable("News");
 
                     b.HasData(
@@ -346,7 +346,7 @@ namespace CinemaWorld.Migrations
                         {
                             Id = 1,
                             Description = "A boy becomes the Messiah of nomads on a desert planet that has giant worms that protect a commodity called Spice. Spice changes people into travelers, mystics and madmen. What price will he pay to become the new ruler of their universe?",
-                            GenreId = 6,
+                            Genre = "Drama",
                             PhotoUrl = "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
                             ReleaseDate = "November, 2023",
                             Title = "Dune: Part two",
@@ -356,7 +356,7 @@ namespace CinemaWorld.Migrations
                         {
                             Id = 2,
                             Description = "The story will focus specifically on a young Willy Wonka and how he met the Oompa-Loompas on one of his earliest adventures.",
-                            GenreId = 1,
+                            Genre = "Adventure",
                             PhotoUrl = "https://pbs.twimg.com/media/FLKj6-paUAA_TGy.jpg",
                             ReleaseDate = "December, 2023",
                             Title = "Wonka",
@@ -366,7 +366,7 @@ namespace CinemaWorld.Migrations
                         {
                             Id = 3,
                             Description = "The story of the infamously terrible American Samoa soccer team, known for a brutal 2001 FIFA match they lost 31-0.",
-                            GenreId = 3,
+                            Genre = "Comedy",
                             PhotoUrl = "https://syn.org.au/app/uploads/Next-Goal-Wins-Movie-Poster-Large.jpg",
                             ReleaseDate = "November, 2023",
                             Title = "Next Goal Wins",
@@ -376,7 +376,7 @@ namespace CinemaWorld.Migrations
                         {
                             Id = 4,
                             Description = "Coriolanus Snow mentors and develops feelings for the female District 12 tribute during the 10th Hunger Games.",
-                            GenreId = 2,
+                            Genre = "Adventure",
                             PhotoUrl = "https://static.titlovi.com/img/0313/313021-tt10545296.jpg",
                             ReleaseDate = "November, 2023",
                             Title = "The Hunger Games: The Ballad of Songbirds and Snakes",
@@ -590,7 +590,7 @@ namespace CinemaWorld.Migrations
                 {
                     b.HasOne("CinemaWorld.Data.Models.Film", "Film")
                         .WithMany("Comments")
-                        .HasForeignKey("FilmId")
+                        .HasForeignKey("FilmId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -625,17 +625,6 @@ namespace CinemaWorld.Migrations
                     b.Navigation("Film");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CinemaWorld.Data.Models.News", b =>
-                {
-                    b.HasOne("CinemaWorld.Data.Models.Genre", "Genre")
-                        .WithMany()
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Genre");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

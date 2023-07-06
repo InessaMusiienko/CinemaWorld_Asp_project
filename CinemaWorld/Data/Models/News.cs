@@ -23,8 +23,9 @@ namespace CinemaWorld.Data.Models
         public string ReleaseDate { get; set; } = null!;
 
         [Required]
-        [MaxLength(GenreMaxLenght)]
-        public string Genre { get; set; } = null!;
+        [ForeignKey(nameof(GenreId))]
+        public int GenreId { get; set; }
+        public Genre Genre { get; set; } = null!;
 
         [Required]
         [MaxLength(ImageUrlMaxLength)]

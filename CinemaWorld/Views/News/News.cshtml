@@ -15,17 +15,17 @@
              <img src="@item.PhotoUrl">
        </div>
        <div class="col">
-                        @if(item.Genre == "Drama")
+                        @if(item.GenreId == 6)
                         {
-                            <button class="movie__tag--drama">@item.Genre</button>
+                            <button class="movie__tag--drama">@item.GenreId</button>
                         }
-                        @if(item.Genre == "Adventure")
+                        @if(item.GenreId == 1)
                         {
-                            <button class="movie__tag--adventure">@item.Genre</button>
+                            <button class="movie__tag--adventure">@item.GenreId</button>
                         }                        
-                        @if(item.Genre == "Comedy")
+                        @if(item.GenreId == 3)
                         {
-                            <button class="movie__tag--comedy">@item.Genre</button>                            
+                            <button class="movie__tag--comedy">@item.GenreId</button>                            
                         }  
                         
            <h3>@item.Title</h3>

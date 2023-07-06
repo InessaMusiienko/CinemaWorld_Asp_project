@@ -6,6 +6,6 @@
         public string Name { get; set; } = null!;
         public string CommentText { get; set; } = null!;
         public DateTime CretedOn { get; set; }
-        public string Film { get; set; } = null!;
+        public int FilmId { get; set; } 
     }
 }

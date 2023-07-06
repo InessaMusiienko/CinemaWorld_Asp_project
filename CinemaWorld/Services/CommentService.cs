@@ -17,14 +17,14 @@ namespace CinemaWorld.Services
         public async Task<IEnumerable<CommentViewModel?>> GetAllCommentsByIdAsync(int id)
         {
             return await dbContext.Comments
-                .Where(c => c.FilmId == id.ToString())
+                .Where(c => c.FilmId == id)
                 .Select(c => new CommentViewModel
                 {
-                    Id = c.Id,
+                    Id = c.commentId,
                     Name = c.Name,
                     CommentText = c.CommentText,
                     CretedOn = DateTime.Now,
-                    Film = c.FilmId
+                    FilmId = c.FilmId
                 }).ToListAsync();
         }
 
@@ -36,7 +36,7 @@ namespace CinemaWorld.Services
             var model = new CommentViewModel
             {
                 CretedOn = DateTime.Now,
-                Film = film.Name
+                FilmId = id
             };
 
             return model;

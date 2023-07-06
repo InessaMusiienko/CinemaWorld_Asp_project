@@ -41,7 +41,13 @@ namespace CinemaWorld.Data
            {
                Id = 5,
                Name = "Fantasy"
+           },
+           new Genre()
+           {
+               Id = 6,
+               Name = "Drama"
            });
+            
 
             var films = new FilmEntityConfiguration();
             builder.Entity<Film>()
@@ -52,7 +58,7 @@ namespace CinemaWorld.Data
                 .HasData(news.GenerateNews());
 
             builder.Entity<IdentityUserFilm>().HasKey(x => new { x.FilmId, x.UserId });
-            builder.Entity<Comment>().HasKey(x => new { x.Id, x.FilmId });
+            builder.Entity<Comment>().HasKey(x => new { x.commentId, x.FilmId });
             builder.Entity<Film>().Property(p => p.Rating).HasPrecision(18, 2);
             base.OnModelCreating(builder);
         }
