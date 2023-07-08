@@ -42,7 +42,6 @@ section nav .logo h1 span{
 .swiper-slide{
     text-align:center;
     font-size: 18px;
-    background: #fff;
     display: flex;
     justify-content:center;
     align-items: center;
@@ -153,7 +152,7 @@ section nav .logo h1 span{
             line-height: 40px;
             font-size: 20px;
             text-align: center;
-            background-color: #ffd500;
+            background-color: white;
             border-radius: 50%;
             cursor: pointer;
         }
@@ -163,7 +162,7 @@ section nav .logo h1 span{
             text-align: left;
             left: 15px;
             font-family: sans-serif;
-            color: #ffd500;
+            color: black;
         }
 
     .swiper-slide img {
@@ -181,22 +180,19 @@ section nav .logo h1 span{
 .swiper-slide .image .comment {
     top: 15%;
     right: 5%;
-    width: 40%;
-    height: 100%;
+    width: 40%;/*
+    height: 100%;*/
     position: absolute;
     background: linear-gradient(to bottom, rgba(0,0,0,0,0), rgba(0,0,0,0,9));
 }
 
-.swiper-slide .image .comment{
-    color: white;
-}
-
 .swiper-slide .image .commentButton {
     display: block;
-    width: 50%;
+    position: fixed;
+    width: 15%;
     margin: 0;
     border: none;
-    border-radius: 12px;
+    border-radius: 15px;
     padding: 2px 5px;
     border: 2px solid white;
     margin-top: 0;
@@ -205,8 +201,54 @@ section nav .logo h1 span{
     justify-items: left;
     justify-self: left;
     margin-bottom: 2px;
-    position: relative;
-    top: 15%;
+    top: 5%;
     right: 5%;
 }
+
+.no_comments{
+    text-align: center;
+    font-size: 14px;
+}
+
+.comment_container{
+    position: relative;
+}
+
+.comment_container::before{
+    content: "";
+    background-color: grey;
+    position: absolute;
+    min-height: 100%;
+    width: 1px;
+    left: -15px;
+}
+
+.comment_container .comment_card{
+    margin-left: 1rem;
+    margin-top: 1rem;
+    padding:10px;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 3px;
+    min-width: 100%;
+    /*height: 5%;*/
+    box-shadow: 0 0 50px rgba(0,0,0,0.1);
+}
+
+.comment_card h3, .comment_card p{
+    margin-bottom: 1rem;
+    color: black;
+    text-align: left;
+}
+
+.comment_card .comment_card-footer{
+    display: flex;
+    font-size: 1rem;
+    opacity: 0.6;
+    gap: 30px;
+    justify-content: flex-end;
+    align-items: center;
+    color: black;
+}
+
 

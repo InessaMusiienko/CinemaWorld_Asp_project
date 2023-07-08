@@ -127,9 +127,9 @@ namespace CinemaWorld.Services
                     Title = n.Title,
                     Description = n.Description,
                     ReleaseDate = n.ReleaseDate,
-                    GenreId = n.GenreId,
                     PhotoUrl = n.PhotoUrl,
-                    VideoUrl = n.VideoUrl
+                    VideoUrl = n.VideoUrl,
+                    Genre = n.Genre.Name
                 }).ToListAsync();
         }
 
@@ -257,7 +257,7 @@ namespace CinemaWorld.Services
         public async Task<IEnumerable<AllFilmViewModel>> TakeThreeFilmsAsync()
         {
             return await dbContext.Films
-                .OrderBy(f=>f.Name)
+                .OrderByDescending(f=>f.Id)
                 .Take(3)
                 .Select(f => new AllFilmViewModel
                 {

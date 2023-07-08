@@ -50,7 +50,8 @@ h4{
 
 .movie__tag--drama,
 .movie__tag--comedy,
-.movie__tag--adventure {
+.movie__tag--action,
+.movie__tag--thriller {
     display: block;
     width: 50%;
     margin: 0;
@@ -64,7 +65,7 @@ h4{
     font-size: 13px;
     justify-items: left;
     justify-self: left;
-    margin-bottom: 2px; 
+    margin-bottom: 2px;
 }
 
 .movie__tag--drama {
@@ -73,9 +74,19 @@ h4{
     margin-top: 0;
 }
 
-.movie__tag--adventure {
+.movie__tag--action {
     background-color: #85C1E9;
     border: 2px solid #5DADE2;
+}
+
+.movie__tag--comedy {
+    background-color: #f1f10f;
+    border: 2px solid #F1C40F;
+}
+
+.movie__tag--thriller {
+    background-color: #d592e8;
+    border: 2px solid #a628b4;
 }
 
 .trailer {

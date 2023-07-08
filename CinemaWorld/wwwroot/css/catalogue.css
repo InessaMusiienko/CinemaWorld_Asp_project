@@ -44,7 +44,7 @@ article {
 .movie__tag--animation,
 .movie__tag--comedy,
 .movie__tag--action {
-    display: block;
+    display: inline-block;
     width: 50%;
     margin: 0;
     border: none;
@@ -121,7 +121,7 @@ p {
 .addToFavor--animation,
 .addToFavor--comedy,
 .addToFavor--action {
-    display: inline-block;
+    display: inline;
     width: 70%;
     margin: 6px 15%;
     border: none;
@@ -181,4 +181,46 @@ p {
     }
 
 
+.h_container {
+    border-radius: 20px;
+    /*box-shadow: 0 2px 8px rgba(0,0,0,.1);*/
+    color: black;
+    display: inline-block;
+    width: 40%;
+    height: 35px;
+    text-align: center;
+    line-height: 45px;
+}
 
+#heart {
+    font-size: 25px;
+}
+
+    #heart:hover {
+        color: red;        
+    }
+
+sub-div #details {
+    display: inline-block;
+    width: 40%;
+    border: none;
+    margin: 6px 15%;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 2px solid purple;
+    background-color: white;
+    color: purple;
+    padding: 2px 5px;
+    font-size: 15px; /*
+    margin-top: 3px;
+    margin-bottom: 2px;*/
+}
+
+sub-div:hover #details {
+    background-color: #AA81EE;
+}
+
+sub-div #details:hover {
+    background-color: purple;
+    color: white;
+}

@@ -9,6 +9,7 @@
 <link href="~/css/details.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <section>
     <div class="swiper mySwiper">
@@ -33,9 +34,9 @@
                             </p>
                         </div>
                         <div class="genre">
-                            <button type="button" class="btn btn-info">@Model.Genre</button>
-                            <button class="category">@Model.Country</button>
-                            <button class="category-year">@Model.Year</button>
+                            <button type="button" class="btn btn-outline-light">@Model.Genre</button>
+                            <button class="btn btn-outline-light">@Model.Country</button>
+                            <button class="btn btn-outline-light">@Model.Year</button>
                         </div>
                         <div class="watch">
                             <a href = @Model.VideoUrl>
@@ -44,36 +45,38 @@
                         </div>
                     </div>
 
-                    <button>
-                    <a asp-controller="Comment" asp-action="AddComment" asp-route-id=@Model.Id  class="commentButton">Add comment</a>
-                    </button>
-
-                    @*<div class="addComment">
-                        <form class="input-group-sm" asp-controller="Comment" asp-action="AddComment" asp-route-id="@Model.Id">
-                                <input type="submit" value="Add a comment" class="movie__tag--action" />
-                        </form>
-                    </div>*@
-                    <div class="comment">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <button>
+                            <a asp-controller="Comment" asp-action="AddComment" asp-route-id=@Model.Id  class="commentButton">Add comment</a>
+                        </button>
+                    }
+                                        
+                    <div class="comment"> @*container*@
                         @if(!Model.Comments.Any())
                         {
-                            <h2 class="text-center">No comments added yet!</h2>
-                        }
-
-                        @*<partial name="_AddCommentPartial" />*@
-                       @* @Html.ActionLink("Add comment", "AddComment", "Commment");*@
-@*
-                        <a href="/Comment/AddComment" class="Button">Add comment</a>*@
-
-                        @foreach (var comment in Model.Comments)
-                        {
-                            <h1 class="writer">@comment.Name</h1>
-                            <div class="like">
-                              <i class="fa fa-thumbs-o-up"></i>
-                            </div>
-                            <div class="comment-text">
-                                <p>@comment.CommentText</p>
-                            </div>
+                            <h2 class="no_comments">No comments added yet!</h2>
                         }                        
+
+                        <div class="comment_container">
+                            @foreach(var comment in Model.Comments)
+                            {
+                                <div class="comment_card">
+                                    <div>
+                                        <i class="glyphicon glyphicon-user"></i>
+                                        <h3 class="comment_title">@comment.Name</h3>
+                                    </div>
+                                    <p>@comment.CommentText</p>
+
+                                    <div class="comment_card-footer">
+                                        <div>Likes 12</div>
+                                        <div>Dislikes 2</div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                                              
                     </div>
 
                     <img src= "~/css/Pictures/allFilms.jpg" />

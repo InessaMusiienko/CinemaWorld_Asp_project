@@ -14,23 +14,27 @@
            <span></span>
              <img src="@item.PhotoUrl">
        </div>
-       <div class="col">
-                        @if(item.GenreId == 6)
+       <div class="col">   
+           @if(item.Genre == "Drama")
                         {
-                            <button class="movie__tag--drama">@item.GenreId</button>
+                            <button class="movie__tag--drama">@item.Genre</button>
                         }
-                        @if(item.GenreId == 1)
+                        @if(item.Genre == "Thriller")
                         {
-                            <button class="movie__tag--adventure">@item.GenreId</button>
+                            <button class="movie__tag--thriller">@item.Genre</button>
                         }                        
-                        @if(item.GenreId == 3)
+                        @if(item.Genre == "Action")
                         {
-                            <button class="movie__tag--comedy">@item.GenreId</button>                            
-                        }  
-                        
+                            <button class="movie__tag--action">@item.Genre</button>                            
+                        }
+                        @if(item.Genre == "Comedy")
+                        {
+                            <button class="movie__tag--comedy">@item.Genre</button>                            
+                        } 
+
            <h3>@item.Title</h3>
            <p>@item.Description</p> 
-           
+                                 
            <a href = @item.VideoUrl>
                <button class="trailer"> Watch trailer</button>
            </a>

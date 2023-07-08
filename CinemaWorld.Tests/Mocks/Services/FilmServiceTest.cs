@@ -12,13 +12,13 @@ namespace CinemaWorld.Tests.Mocks.Services
 {
     public class FilmServiceTest
     {
-       public void IsFilmShouldReturnTruelWhenFilmExists()
+       public void FilmShouldReturnViewWithCorrectModel()
        {
             //Arrange
             const int filmId = 1;
             using var data = DatabaseMock.Instance;
 
-            data.Films.Add(new Film {Id = 1});
+            data.Films.Add(new Film {Id = 1}); 
             data.SaveChanges();
 
             var filmService = new FilmService(data);
