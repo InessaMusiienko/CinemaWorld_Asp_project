@@ -1,6 +1,7 @@
 using CinemaWorld.Contacts;
 using CinemaWorld.Data;
 using CinemaWorld.Data.Modelbinder;
+using CinemaWorld.Hubs;
 using CinemaWorld.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,8 @@ namespace CinemaWorld
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            builder.Services.AddSignalR();
 
             builder.Services.Configure<IdentityOptions>(options =>
             {
@@ -71,7 +74,11 @@ namespace CinemaWorld
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHub<ChatHub>("/chat");
+            });
+                        
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

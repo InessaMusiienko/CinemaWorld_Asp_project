@@ -57,6 +57,9 @@ namespace CinemaWorld.Data
             builder.Entity<News>()
                 .HasData(news.GenerateNews());
 
+            builder.Entity<Message>()
+                .HasNoKey();
+
             builder.Entity<IdentityUserFilm>().HasKey(x => new { x.FilmId, x.UserId });
             builder.Entity<Comment>().HasKey(x => new { x.commentId, x.FilmId });
             builder.Entity<Film>().Property(p => p.Rating).HasPrecision(18, 2);
@@ -68,5 +71,6 @@ namespace CinemaWorld.Data
         public DbSet<Comment> Comments { get; set; } = null!;
         public DbSet<News> News { get; set; } = null!;
         public DbSet<IdentityUserFilm> IdentityUserFilms { get; set; } = null!;
+        public DbSet<Message> Messages { get; set; } = null!;
     }
 }

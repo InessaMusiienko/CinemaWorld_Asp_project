@@ -1,14 +1,108 @@
-body {
-    background-image: url("Pictures/cinema-background.jpg");
-    background-size: cover;
-    align-items: center;
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body{
+    display: flex;
+    height: 100vh;
     justify-content: center;
     align-items: center;
-    color: #f2ecff;
+    background: url("Pictures/register_background.jpg");
+    background-size: cover;
 }
-h2 {
-    color: #f2ecff;
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(0,0,0,0.5);
+    padding: 2px;
+    margin: 0 14px;
+    border-radius: 10px;
+    box-shadow: inset -2px -2px 2px white;
+    margin-left: 3px;
+    align-items: center;
+    margin-right: 3px;
 }
+
+.form-title{
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 4px;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    border-bottom: solid 1px white;
+}
+
+.main-user-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.user-input-box:nth-child(1n){
+    justify-content: end;
+}
+
+.user-input-box{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    align-items: center;
+    padding-bottom: 15px;
+    padding-left: 3px;
+    padding-right: 10px;
+}
+
+.user-input-box label{
+    width: 90%;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+.user-input-box input{
+    height: 40px;
+    width: 90%;
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid grey;
+    padding: 0 10px;
+}
+
+.form-submit-btn button{
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    color: rgb(209, 209, 209);
+    background: rgb(63, 114, 76, 0.7); 
+}
+
+.form-submit-btn{
+    margin-top: 40px;
+}
+
+.form-submit-btn button: hover{
+    background-color: green;
+    color: white;
+}
+
+#account{
+    color: white;
+}
+
+
+
 
 
 

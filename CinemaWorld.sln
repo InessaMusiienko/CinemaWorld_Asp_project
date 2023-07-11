@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaWorld", "CinemaWorld\CinemaWorld.csproj", "{FAC69830-2DA1-4646-A25B-F42BF3AC0778}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaWorld.Tests", "CinemaWorld.Tests\CinemaWorld.Tests.csproj", "{45AD38CB-41DD-4EC9-97E2-0402AEC3C492}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaWorld.Tests", "CinemaWorld.Tests\CinemaWorld.Tests.csproj", "{45AD38CB-41DD-4EC9-97E2-0402AEC3C492}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
