@@ -74,10 +74,11 @@ namespace CinemaWorld
 
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapHub<ChatHub>("/chat");
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapHub<ChatHub>("/chat");
+            //});
+            app.MapHub<ChatHub>("/chat");
                         
             app.MapControllerRoute(
                 name: "default",
