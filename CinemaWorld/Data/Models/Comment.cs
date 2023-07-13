@@ -8,10 +8,10 @@ namespace CinemaWorld.Data.Models
     public class Comment
     {
         [Key]
-        public int commentId { get; set; }
+        public Guid CommentId { get; set; } = Guid.NewGuid();
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [Required]
         [MaxLength(CommentMaxlenght)]

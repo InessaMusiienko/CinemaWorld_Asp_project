@@ -20,7 +20,6 @@ namespace CinemaWorld.Services
                 .Where(c => c.FilmId == id)
                 .Select(c => new CommentViewModel
                 {
-                    Id = c.commentId,
                     Name = c.Name,
                     CommentText = c.CommentText,
                     CretedOn = DateTime.Now,

@@ -200,7 +200,6 @@ namespace CinemaWorld.Services
                     Genre = f.Genre.Name,
                     Comments = f.Comments.Select(c=> new CommentViewModel
                     {
-                        Id= c.commentId,
                         Name = c.Name,
                         CommentText = c.CommentText,
                         CretedOn = c.CretedOn,

@@ -61,7 +61,7 @@ namespace CinemaWorld.Data
                 .HasNoKey();
 
             builder.Entity<IdentityUserFilm>().HasKey(x => new { x.FilmId, x.UserId });
-            builder.Entity<Comment>().HasKey(x => new { x.commentId, x.FilmId });
+            builder.Entity<Comment>().HasKey(x => new { x.CommentId, x.FilmId });
             builder.Entity<Film>().Property(p => p.Rating).HasPrecision(18, 2);
             base.OnModelCreating(builder);
         }
