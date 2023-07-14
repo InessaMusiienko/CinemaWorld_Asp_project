@@ -90,6 +90,7 @@ namespace CinemaWorld.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> AddNewFilm()
         {
@@ -99,6 +100,7 @@ namespace CinemaWorld.Controllers
             });
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> AddNewFilm(AddFilmViewModel model)
         {
