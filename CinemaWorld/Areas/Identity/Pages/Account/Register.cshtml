@@ -7,7 +7,9 @@
     Layout = null;
 }
 <link href="~/css/register.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<a href="javascript: history.go(-1)"><i class="fa fa-angle-double-left" style="font-size:36px" id="backButton"></i></a> 
 <div class="container">
     <h1 class="form-title">@ViewData["Title"]</h1>
     <form asp-route-returnUrl="@Model.ReturnUrl" method="post">

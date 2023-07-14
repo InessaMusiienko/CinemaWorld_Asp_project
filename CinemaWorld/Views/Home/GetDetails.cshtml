@@ -50,9 +50,9 @@
                         <button>
                             <a asp-controller="Comment" asp-action="AddComment" asp-route-id=@Model.Id  class="commentButton">Add comment</a>
                         </button>
-                    }
+                    }                    
                                         
-                    <div class="comment"> @*container*@
+                    <div class="comment"> 
                         @if(!Model.Comments.Any())
                         {
                             <h2 class="no_comments">No comments added yet!</h2>
@@ -62,16 +62,18 @@
                             @foreach(var comment in Model.Comments)
                             {
                                 <div class="comment_card">
-                                    <div>
+                                    <div class="comment-card-name">
                                         <i class="glyphicon glyphicon-user"></i>
                                         <h3 class="comment_title">@comment.Name</h3>
                                     </div>
                                     <p>@comment.CommentText</p>
 
                                     <div class="comment_card-footer">
-                                        <div>Likes 12</div>
-                                        <div>Dislikes 2</div>
+                                        <i onclick="myFunction(this)" class="fa fa-thumbs-up" style="font-size:24px"></i>
                                     </div>
+                                    <button>
+                                        <a asp-controller="Comment" asp-action="DeleteComment" asp-route-id=@comment.Id>Delete</a>
+                                    </button>
                                 </div>
                             }
 
@@ -86,22 +88,13 @@
     </div>
 </section>
 
-
-@*<div class="container justify-content-center mt-5 border-left border-right">
-    <div class="d-flex justify-content-center pt-3 pb-2"> <input type="text" name="text" placeholder="+ Add a comment" class="form-control addtxt"> </div>
-    @foreach (var comment in Model.Comments)
-    {
-        <div class="d-flex justify-content-center py-2">
-            <div class="d-flex justify-content-between py-1 pt-2">
-                <div class="second py-2 px-2"> <span class="text1">@comment.CommentText</span>
-                    <div><img src="https://toppng.com/uploads/preview/app-icon-set-login-icon-comments-avatar-icon-11553436380yill0nchdm.png" width="18"><span class="text2">@comment.Name</span></div>
-                    <div><span class="text3">Upvote?</span><span class="thumbup"><i class="fa fa-thumbs-o-up"></i></span><span class="text4">3</span></div>
-                </div>
-            </div>
-        </div>    
-    }
-    </div>
-</div>*@
+@section Scripts{
+    <script>
+        function myFunction(x) {
+            x.classList.toggle("fa-thumbs-down");
+        }
+    </script>
+}
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

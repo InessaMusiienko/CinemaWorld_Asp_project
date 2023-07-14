@@ -5,7 +5,14 @@
     font-family: sans-serif;
 }
 
-body{
+#backButton{
+    color: black;
+    position:fixed;
+    top: 5%;
+    left: 1%;
+}
+
+body {
     display: flex;
     height: 100vh;
     justify-content: center;
@@ -84,8 +91,8 @@ body{
     padding: 10px;
     border: none;
     border-radius: 3px;
-    color: rgb(209, 209, 209);
-    background: rgb(63, 114, 76, 0.7); 
+    color: white;
+    background: green; 
 }
 
 .form-submit-btn{
