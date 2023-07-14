@@ -61,11 +61,10 @@ namespace CinemaWorld
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-           
+                app.UseStatusCodePagesWithRedirects("/Home/Error?status code={0}");
+
                 app.UseHsts();
             }
-
-            app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -74,10 +73,7 @@ namespace CinemaWorld
 
             app.UseAuthentication();
             app.UseAuthorization();
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapHub<ChatHub>("/chat");
-            //});
+            
             app.MapHub<ChatHub>("/chat");
                         
             app.MapControllerRoute(
