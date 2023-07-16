@@ -132,6 +132,7 @@ namespace CinemaWorld.Controllers
                         
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -147,6 +148,7 @@ namespace CinemaWorld.Controllers
             return this.View(filmModel);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Edit(int id, AddFilmViewModel model)
         {
@@ -172,11 +174,14 @@ namespace CinemaWorld.Controllers
             return RedirectToAction("Catalogue", "Film");
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var model = await this.filmService.GetFilmForDeleteByIdAsync(id);
             return View(model);
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Delete(int id, FilmDeleteViewModel filmModel)
         {

@@ -24,53 +24,40 @@
                         {
                             <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
                                 <input type="submit" value="Thriller" class="movie__tag--thriller" />
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
-                                }
+                                <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
                             </form>
                         }
                         @if(film.Genre == "Fantasy")
                         {
                              <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
                                 <input type="submit" value="Fantasy" class="movie__tag--fantasy" />
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
-                                }
+                                <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
                             </form>
                         }
                         @if(film.Genre == "Animation")
                         {
                              <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
                                 <input type="submit" value="Animation" class="movie__tag--animation" />
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
-                                }
+                                <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
                             </form>
                         }
                         @if(film.Genre == "Comedy")
                         {
                              <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
-                                <input type="submit" value="Comedy" class="movie__tag--comedy" />
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
-                                }
-                            </form>
+                                <input type="submit" value="Comedy" class="movie__tag--comedy" />   
+                                <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
+                            </form>                            
                         }   
                         @if(film.Genre == "Action")
                         {
                              <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
-                                <input type="submit" value="Action" class="movie__tag--action" />                                
+                                <input type="submit" value="Action" class="movie__tag--action" />
                                 <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
-                            </form>
+                            </form>                            
                         } 
+
                         <h5>@film.Name</h5>
                         <p>@film.Description</p>
-
-                        <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
                     </div>
                 </article>
 
@@ -79,6 +66,7 @@
                         <form class="input-group-sm" asp-controller="Home" asp-action="GetDetails" asp-route-id="@film.Id">
                             <input type="submit" value="Details" class="addToFavor--thriller" />
                         </form>
+
                     }
                     @if (film.Genre == "Fantasy")
                     {
@@ -150,29 +138,4 @@
         }
     </section>
 </div>
-@*<div class="general-div">
-    <section id="moviesSection">
-        @foreach (var film in Model)
-        {
-            <div class="sub-div">
-                <article>
-                    <img class="movie__img2"
-                        src="@film.ImageUrl" alt="Film Image">
-                    <div class="card-body">
-
-                        <h5 class="card-title mt-1">@film.Name</h5>
-                        <p class="mb-0">Author: @film.Country, @film.Year</p>
-                        <p class="mb-0">Description: @film.</p>
-                        <p>Category: @film.Genre</p>
-                    </div>
-                </article>
-
-                <form class="input-group-sm" asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id">
-                    <input type="submit" value="Remove from Favourites" class="fs-6 btn btn-success mb-3 p-2" />
-                </form>
-            </div>
-        }
-    }
-    </section>
-</div>*@
 

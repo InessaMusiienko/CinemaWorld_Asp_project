@@ -39,10 +39,14 @@
                                 <a class="nav-link text-dark"
                                asp-area="" asp-controller="News" asp-action="News">Upcoming soon</a>
                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link text-dark"
-                               asp-area="" asp-controller="Film" asp-action="AddNewFilm">Add Film</a>
-                            </li>
+                             
+                            @if(User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark"
+                                    asp-area="" asp-controller="Film" asp-action="AddNewFilm">Add Film</a>
+                                </li>
+                            }
                         }
                         else
                         {

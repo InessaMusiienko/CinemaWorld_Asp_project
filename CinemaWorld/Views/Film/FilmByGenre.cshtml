@@ -16,32 +16,53 @@
                         {
                             <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
                                 <input type="submit" value="Thriller" class="movie__tag--thriller" />
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
+                                }
                             </form>
                         }
                         @if(film.Genre == "Fantasy")
                         {
                              <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
                                 <input type="submit" value="Fantasy" class="movie__tag--fantasy" />
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
+                                }
                             </form>
                         }
                         @if(film.Genre == "Animation")
                         {
                              <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
                                 <input type="submit" value="Animation" class="movie__tag--animation" />
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
+                                }
                             </form>
                         }
                         @if(film.Genre == "Comedy")
                         {
                              <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
                                 <input type="submit" value="Comedy" class="movie__tag--comedy" />
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
+                                }
                             </form>
                         }   
                         @if(film.Genre == "Action")
                         {
                              <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
                                 <input type="submit" value="Action" class="movie__tag--action" />
-                            </form>
-                        }
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
+                                }
+                            </form>                            
+                        } 
+
                         <h5>@film.Name</h5>
                         <hr />
                         <p>@film.Country, @film.Year</p>
@@ -49,39 +70,36 @@
                     </div>
                 </article>
 
-                @if (User.Identity.IsAuthenticated)
-                {
-                    @if(film.Genre == "Thriller")
-                        {
-                            <form class="input-group-sm" asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id">
-                                <input type="submit" value="Add to Favourite" class="addToFavor--thriller" />
-                            </form>
-                        }
-                        @if(film.Genre == "Fantasy")
-                        {
-                            <form class="input-group-sm" asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id">
-                                <input type="submit" value="Add to Favourite" class="addToFavor--fantasy" />
-                            </form>
-                        }
-                        @if(film.Genre == "Animation")
-                        {
-                            <form class="input-group-sm" asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id">
-                                <input type="submit" value="Add to Favourite" class="addToFavor--animation" />
-                            </form>
-                        }
-                        @if(film.Genre == "Comedy")
-                        {
-                            <form class="input-group-sm" asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id">
-                                <input type="submit" value="Add to Favourite" class="addToFavor--comedy" />
-                            </form>
-                        }   
-                        @if(film.Genre == "Action")
-                        {
-                            <form class="input-group-sm" asp-controller="Film" asp-action="AddToFavourites" asp-route-id="@film.Id">
-                                <input type="submit" value="Add to Favourite" class="addToFavor--action" />
-                            </form>
-                        }                         
-                }
+                @if (film.Genre == "Thriller")
+                    {
+                        <form class="input-group-sm" asp-controller="Home" asp-action="GetDetails" asp-route-id="@film.Id">
+                            <input type="submit" value="Details" class="addToFavor--thriller" />
+                        </form>
+                    }
+                    @if (film.Genre == "Fantasy")
+                    {
+                        <form class="input-group-sm" asp-controller="Home" asp-action="GetDetails" asp-route-id="@film.Id">
+                            <input type="submit" value="Details" class="addToFavor--fantasy" />
+                        </form>
+                    }
+                    @if (film.Genre == "Animation")
+                    {
+                        <form class="input-group-sm" asp-controller="Home" asp-action="GetDetails" asp-route-id="@film.Id">
+                            <input type="submit" value="Details" class="addToFavor--animation" />
+                        </form>
+                    }
+                    @if (film.Genre == "Comedy")
+                    {
+                        <form class="input-group-sm" asp-controller="Home" asp-action="GetDetails" asp-route-id="@film.Id">
+                            <input type="submit" value="Details" class="addToFavor--comedy" />
+                        </form>
+                    }   
+                    @if (film.Genre == "Action")
+                    {
+                        <form class="input-group-sm" asp-controller="Home" asp-action="GetDetails" asp-route-id="@film.Id">
+                            <input type="submit" value="Details" class="addToFavor--action" />
+                        </form>
+                    } 
             </div>
         }
     </section>
