@@ -62,9 +62,10 @@
                             @foreach(var comment in Model.Comments)
                             {
                                 <div class="comment_card">
+                                        <a asp-controller="Comment" asp-action="DeleteComment" asp-route-id=@comment.Id class="deleteIcon"><i class="fa fa-close"></i></a>
                                     <div class="comment-card-name">
                                         <i class="glyphicon glyphicon-user"></i>
-                                        <h3 class="comment_title">@comment.Name</h3>
+                                        <h2 class="comment_title">@comment.Name</h2>
                                     </div>
                                     <p>@comment.CommentText</p>
 
@@ -73,14 +74,12 @@
                                         <i id="thumbIcon" class="fa fa-thumbs-up" style="font-size:24px"></i>
                                         </button>
                                     </div>
-                                    <button>
-                                        <a asp-controller="Comment" asp-action="DeleteComment" asp-route-id=@comment.Id>Delete</a>
-                                    </button>
                                 </div>
-                            }
-
+                            }                           
                         </div>
-                                              
+                        <a asp-controller="Film" asp-action="Catalogue">
+                            <i class="fa fa-angle-double-right" style="font-size:24px" id="backButton"></i>
+                        </a>
                     </div>
 
                     <img src= "~/css/Pictures/allFilms.jpg" />

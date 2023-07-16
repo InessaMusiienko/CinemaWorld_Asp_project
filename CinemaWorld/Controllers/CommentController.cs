@@ -65,6 +65,7 @@ namespace CinemaWorld.Controllers
         public async Task<IActionResult> DeleteComment(string Id)
         {
             var commentToDelete = await dbContext.Comments.FirstOrDefaultAsync(x => x.CommentId == Guid.Parse(Id));
+            var film = commentToDelete.FilmId;
 
             if (commentToDelete != null)
             {
@@ -72,7 +73,7 @@ namespace CinemaWorld.Controllers
                 await dbContext.SaveChangesAsync();
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("GetDetails", "Home", new {id = film});
         }
     }
 }

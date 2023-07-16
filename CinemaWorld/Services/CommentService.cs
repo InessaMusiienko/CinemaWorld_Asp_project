@@ -34,7 +34,7 @@ namespace CinemaWorld.Services
 
             var model = new CommentViewModel
             {
-                CretedOn = DateTime.Now,
+                CretedOn = DateTime.UtcNow,
                 FilmId = id
             };
 
