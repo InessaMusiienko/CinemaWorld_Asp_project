@@ -198,8 +198,9 @@ namespace CinemaWorld.Services
                     Year = f.Year,
                     Country = f.Country,
                     Genre = f.Genre.Name,
-                    Comments = f.Comments.Select(c=> new CommentViewModel
+                    Comments = f.Comments.Select(c => new CommentViewModel
                     {
+                        Id = c.CommentId.ToString(),
                         Name = c.Name,
                         CommentText = c.CommentText,
                         CretedOn = c.CretedOn,

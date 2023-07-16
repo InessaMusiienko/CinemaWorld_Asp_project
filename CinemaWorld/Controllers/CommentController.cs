@@ -3,7 +3,9 @@ using CinemaWorld.Data;
 using CinemaWorld.Data.Models;
 using CinemaWorld.Models;
 using CinemaWorld.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaWorld.Controllers
 {
@@ -37,13 +39,13 @@ namespace CinemaWorld.Controllers
         [HttpPost]
         public async Task<IActionResult> AddComment(CommentViewModel model)
         {
-            var film = await filmService.GetFilmByIdAsync(model.Id);
+            var film = await filmService.GetFilmByIdAsync(int.Parse(model.Id));
 
             var comment = new Comment()
             {
                 Name = model.Name,
                 CommentText = model.CommentText,
-                FilmId = model.Id
+                FilmId = int.Parse(model.Id)
             };
 
             await dbContext.Comments.AddAsync(comment);
@@ -56,6 +58,21 @@ namespace CinemaWorld.Controllers
         {
             var comments = await commentService.GetAllCommentsByIdAsync(id);
             return View(comments);
+        }
+
+        //[Authorize(Roles = "Admin")]
+        
+        public async Task<IActionResult> DeleteComment(string Id)
+        {
+            var commentToDelete = await dbContext.Comments.FirstOrDefaultAsync(x => x.CommentId == Guid.Parse(Id));
+
+            if (commentToDelete != null)
+            {
+                dbContext.Comments.Remove(commentToDelete);
+                await dbContext.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

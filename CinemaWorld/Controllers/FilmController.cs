@@ -32,7 +32,7 @@ namespace CinemaWorld.Controllers
 
             return View(new AllFilmsQueryModel
             {
-                
+
                 Films = model,
                 SearchTerm = query.SearchTerm,
                 Sorting = query.Sorting
