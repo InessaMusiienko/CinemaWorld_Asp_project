@@ -101,7 +101,6 @@ namespace CinemaWorld.Services
             };
 
             var totalFilms = filmQuery.Count();
-            query.TotalFilms = totalFilms;
                         
             return await filmQuery
                 .Skip((query.CurrentPage -1) * query.FilmsPerPage)
@@ -114,8 +113,10 @@ namespace CinemaWorld.Services
                     Rating = f.Rating,
                     Country = f.Country,
                     Description = f.Description,
-                    Genre = f.Genre.Name
+                    Genre = f.Genre.Name,
+                    AllFilmTotalCount = totalFilms,
                 }).ToListAsync();
+
         }
 
         public async Task<IEnumerable<NewsViewModel>> GetAllNewsAsync()

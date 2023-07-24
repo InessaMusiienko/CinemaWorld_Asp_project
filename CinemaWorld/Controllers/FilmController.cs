@@ -32,11 +32,17 @@ namespace CinemaWorld.Controllers
 
             return View(new AllFilmsQueryModel
             {
-
+                TotalFilms = model.FirstOrDefault().AllFilmTotalCount,
+                CurrentPage = query.CurrentPage,
                 Films = model,
                 SearchTerm = query.SearchTerm,
-                Sorting = query.Sorting
-            });
+                Sorting = query.Sorting,
+                FilmsPerPage = query.FilmsPerPage,
+                
+            }); 
+
+            
+
         }
 
         public async Task<IActionResult> Mine()

@@ -21,5 +21,7 @@ namespace CinemaWorld.Models.Film
         public decimal Rating { get; set; }
 
         public string Genre { get; set; } = null!;
+
+        public int AllFilmTotalCount { get; set; }
     }
 }

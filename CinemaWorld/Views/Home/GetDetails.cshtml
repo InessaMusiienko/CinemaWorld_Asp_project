@@ -62,7 +62,10 @@
                             @foreach(var comment in Model.Comments)
                             {
                                 <div class="comment_card">
+                                    @if (User.IsInRole("Admin"))
+                                    {
                                         <a asp-controller="Comment" asp-action="DeleteComment" asp-route-id=@comment.Id class="deleteIcon"><i class="fa fa-close"></i></a>
+                                    }
                                     <div class="comment-card-name">
                                         <i class="glyphicon glyphicon-user"></i>
                                         <h2 class="comment_title">@comment.Name</h2>
