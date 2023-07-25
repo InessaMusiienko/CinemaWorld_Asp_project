@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @model DetailsFilmViewModel
+
 @{
     Layout = null;
 }
@@ -44,21 +45,37 @@
                              </a>
                         </div>
                     </div>
-
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <button>
-                            <a asp-controller="Comment" asp-action="AddComment" asp-route-id=@Model.Id  class="commentButton">Add comment</a>
-                        </button>
-                    }                    
+                                                        
                                         
                     <div class="comment"> 
                         @if(!Model.Comments.Any())
                         {
                             <h2 class="no_comments">No comments added yet!</h2>
-                        }                        
+                        }  
+                        
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                        <div class="commentRow">
+                            <div class="col">
+                                <form asp-controller="Comment" asp-action="AddComment" method="get">
+                                <div class="mb-3">
+                                    <input class="form-control" aria-required="true" placeholder="Name" name="name"/>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" aria-required="true" rows="5" placeholder="Comment" name="comment"></textarea>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <input name="id" value="@Model.Id" type="hidden"/>
+                                    <input class="btn btn-success" type="submit" value="Add comment" />
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        }
 
-                        <div class="comment_container">
+                        <div class="comment_container" style="overflow:auto">
                             @foreach(var comment in Model.Comments)
                             {
                                 <div class="comment_card">

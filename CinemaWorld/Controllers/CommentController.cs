@@ -25,33 +25,21 @@ namespace CinemaWorld.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AddComment(int id)
+        public async Task<IActionResult> AddComment(string name, string comment, int id)
         {
             var film = await filmService.GetFilmByIdAsync(id);
-            if (film == null)
-            {
-               return RedirectToAction("GetDetails", "Home");
-            }
-            CommentViewModel model = await commentService.GetNewCommentModelAsync(id);
-            return View(model);
-        }
 
-        [HttpPost]
-        public async Task<IActionResult> AddComment(CommentViewModel model)
-        {
-            var film = await filmService.GetFilmByIdAsync(int.Parse(model.Id));
-
-            var comment = new Comment()
+            var newComment = new Comment()
             {
-                Name = model.Name,
-                CommentText = model.CommentText,
-                FilmId = int.Parse(model.Id)
+                Name = name,
+                CommentText = comment,
+                FilmId = id,
             };
 
-            await dbContext.Comments.AddAsync(comment);
+            await dbContext.Comments.AddAsync(newComment);
             await dbContext.SaveChangesAsync();
 
-            return RedirectToAction("GetDetails", "Home", new {id = model.Id});
+            return RedirectToAction("GetDetails", "Home", new {id=id });
         }
 
         public async Task<IActionResult> AllCommentsById(int id)
