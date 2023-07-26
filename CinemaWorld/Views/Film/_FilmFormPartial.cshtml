@@ -24,7 +24,7 @@
                 <span asp-validation-for="@Model.VideoUrl" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <input type="number" asp-for="Rating" class="form-control" value="" placeholder="Rating"/>
+                <input type="number" asp-for="Rating" class="form-control" placeholder="Rating" step=".01" min="0" max="10"/>
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
             <div class="mb-3">

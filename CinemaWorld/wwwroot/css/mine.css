@@ -181,9 +181,9 @@ p {
     }
 
 
- sub-div .h_container {
+.h_container {
     border-radius: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    /*box-shadow: 0 2px 8px rgba(0,0,0,.1);*/
     color: black;
     display: inline-block;
     width: 40%;
@@ -191,11 +191,11 @@ p {
     text-align: center;
     line-height: 45px;
 }
-
-sub-div #heart {
+.card-body .movie__tag--thriller #heart {
     font-size: 25px;
+    color: black;
 }
 
-    sub-div #heart:hover {
+#heart:hover {
         color: red;
-    }
+}

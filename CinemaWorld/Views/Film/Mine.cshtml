@@ -21,10 +21,10 @@
                          src= @film.ImageUrl>
                     <div class="card-body">
                         @if(film.Genre == "Thriller")
-                        {
+                        {                            
                             <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
                                 <input type="submit" value="Thriller" class="movie__tag--thriller" />
-                                <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
+                                    <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
                             </form>
                         }
                         @if(film.Genre == "Fantasy")
@@ -33,27 +33,28 @@
                                 <input type="submit" value="Fantasy" class="movie__tag--fantasy" />
                                 <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
                             </form>
+                             
                         }
                         @if(film.Genre == "Animation")
                         {
                              <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
                                 <input type="submit" value="Animation" class="movie__tag--animation" />
-                                <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
                             </form>
+                            <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
                         }
                         @if(film.Genre == "Comedy")
                         {
                              <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
-                                <input type="submit" value="Comedy" class="movie__tag--comedy" />   
-                                <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
+                                <input type="submit" value="Comedy" class="movie__tag--comedy" />  
                             </form>                            
+                             <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
                         }   
                         @if(film.Genre == "Action")
                         {
                              <form class="input-group-sm" asp-controller="Film" asp-action="FilmByGenre" asp-route-id="@film.Id">
                                 <input type="submit" value="Action" class="movie__tag--action" />
-                                <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
-                            </form>                            
+                            </form> 
+                            <a asp-controller="Film" asp-action="RemoveFromFavourites" asp-route-id="@film.Id" class="h_container"><i id="heart" class="far fa-heart"></i></a>
                         } 
 
                         <h5>@film.Name</h5>
@@ -92,13 +93,7 @@
                             <input type="submit" value="Details" class="addToFavor--action" />
                         </form>
                     }            
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a asp-controller="Film" asp-action="Edit" asp-route-id=@film.Id class="btn btn-light">Edit</a>
-                        <a asp-controller="Film" asp-action="Delete" asp-route-id=@film.Id class="btn btn-light">Delete</a>                     
-                    }
-
-                 
+                                     
                 @if (User.Identity.IsAuthenticated)
                 {
                    
@@ -138,4 +133,6 @@
         }
     </section>
 </div>
+<script src="https://kit.fontawesome.com/3929e16ef5.js" crossorigin="anonymous"></script>
+        <script src="{% static 'network/functions.js' %}"></script>
 

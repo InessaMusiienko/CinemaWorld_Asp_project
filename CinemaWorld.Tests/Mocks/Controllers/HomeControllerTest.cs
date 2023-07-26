@@ -15,7 +15,7 @@ namespace CinemaWorld.Tests.Mocks.Controllers
         {
             var homecontroller = new HomeController(null);
 
-            var result = homecontroller.Error();
+            var result = homecontroller.Error(1);
 
             Assert.NotNull(result);
             Assert.IsType<ViewResult>(result);
